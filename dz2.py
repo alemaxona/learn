@@ -27,12 +27,12 @@ print(' All answer = ' + str(answer_score) + '\n' + ' Your attempts = ' + (str(3
 y_list = [1, 2, 5, 3, 8, 10]
 y_list.sort()
 for l in my_list:
-    print(l)
+	print(l)
 
 #Input key and value
-my_dict = { 1: 'one', 2: 'two', 3: 'three', 4: 'for', 5: 'five' }
+my_dict = {1: 'one', 2: 'two', 3: 'three', 4: 'for', 5: 'five'}
 for k in my_dict:
-    print(k, my_dict[key])
+	print(k, my_dict[k])
 
 #max and min
 user_tuple = (1.234, 4.5, 6.34, 1.333, 9.999, 123.2, 0.555, 1000.1)
@@ -65,8 +65,8 @@ matrix = [	[1,2,3],
 
 #rows
 for row in matrix:
-    for elem in row:
-        print(elem, a ='|')
-    print()
+	for elem in row:
+		print(elem, a ='|')
+	print()
 
  #columns

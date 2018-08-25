@@ -46,17 +46,16 @@ while answer_attempts < 20:
 				print('Answer accepted!')
 				break
 		else:
-			 if score == 0: 
-			 	score = 0
-			 else:	
-			 	score = score - 1
-			 	print ('My name not ' + str(answer))
-			 break
+            if score == 0:
+                score = 0
+            else:
+                score = score - 1
+                print ('My name not ' + str(answer))
+            break
 while answer_attempts < 20:
-	answer = input('What my love Phone? y/n:')
-	answer_attempts = answer_attempts + 1
-	if answer == 'Iphone' or answer == 'iPhone' or answer =='IPHONE':
-		score = score + 1
+    answer = input('What my love Phone? y/n:')
+    answer_attempts = answer_attempts + 1
+    if answer == 'Iphone' or answer == 'iPhone' or answer =='IPHONE':zscore = score + 1
 		print('Answer accepted!')
 		break
 	else:
