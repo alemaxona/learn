@@ -1,3 +1,13 @@
+#RANDOM
+from random import randint
+value = randint(0, 20)
+print(value)
+#12
+import random
+items = ['one', 'two', 'three', 'four', 'five']
+random.choice(items)
+#'four'
+
 #
 tuple1 = (1, 2, 'string', 'one more', )
 new_tuple = tuple()
@@ -6,7 +16,7 @@ for item in tuple1:
     if not isinstance(item, str): # Если этот елемент не строка
         new_tuple += (item, ) # new_tuple = new_tuple + (item, )
 print(new_tuple)
-(1, 2)
+(#1, 2)
 
 
 #
@@ -92,6 +102,7 @@ try:
     raise TypeError('Some message')
 except TypeError as e:
     print(e)
+#Some message
 
 try:
     print('Fine')
@@ -169,3 +180,49 @@ print('Word', end = '\n')
 #Word
 #>>>
 
+#Является ли аргумент функцией? callable()
+callable(print)
+
+#Не обязательно ставить "()" у функции, нужно стаить "()" при объявлении и вызове!
+def return_min_function():
+    return min
+
+test = return_min_function()
+min_value = test(4, 5, -9, 12)
+print('Min values is', min_value)
+
+#Глобальные переменные принято называть БОЛЬШИМИ БУКВАМИ: GLOBAL_VAR = []!
+#Замыкание - возможность функций использовать чужие переменные!
+#Рекурсия - способ функции вызвать саму себя! (Медленная! Лучше циклы!)
+
+
+print('Max', end='!') #Не переходит на новую строку
+print('Max', end='\n')
+
+s, k = (1,2) #Но не s,k,m = (1,2)
+print(s,k)
+#1 2
+
+first, *second = (1,2,3,4,5)
+print(first,second)
+#1 [2, 3, 4, 5]
+
+*f,s = 'Moscow'
+print(f)
+#['M', 'o', 's', 'c', 'o']
+
+def accept_args(*args):
+    print(args)
+    return sum(args)
+print(accept_args(1,2,3,4,5)) #Tuple
+values = [1,2,3,4,5] #List
+accept_args(values) #Будет ошибка!
+accept_args(*values) #Будет работать! Распаковка! Tuple => List
+
+def accept_kwargs(**kawargs):
+    print(kawargs)
+accept_kwargs(name='Max', job='DBA')
+values = {'day':'wed', 'month':'may'}
+
+accept_kwargs(values)#Будет ошибка!
+accept_kwargs(**values)#Будет работать! Распаковка! Сколько пар - столько и ключей!
