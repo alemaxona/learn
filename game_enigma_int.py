@@ -5,7 +5,7 @@ from random import randint
 
 
 def enigma_int():
-    print('\nNew Game!')
+    print('\nNew Game - enigma_int!')
     enigma_number = randint(0, 20)
     flag = 0
     while flag != 1:
@@ -20,7 +20,7 @@ def enigma_int():
 
 
 while True:
-    answer = input('\nStart new game EnigmaInt? Y/N ')
+    answer = input('\nStart new game? Y/N ')
     if answer == 'y' or answer == 'Y':
         enigma_int()
     else:
