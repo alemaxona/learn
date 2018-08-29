@@ -3,6 +3,7 @@ from random import randint
 value = randint(0, 20)
 print(value)
 #12
+
 import random
 items = ['one', 'two', 'three', 'four', 'five']
 random.choice(items)
@@ -16,8 +17,7 @@ for item in tuple1:
     if not isinstance(item, str): # Если этот елемент не строка
         new_tuple += (item, ) # new_tuple = new_tuple + (item, )
 print(new_tuple)
-(#1, 2)
-
+#(1, 2)
 
 #
 list1 = [1, 2 ]
@@ -35,12 +35,11 @@ list1.insert(1, 'str') # Не стоит использовать! 1 здесь 
 #list1.remove('2') # Delete element for value
 #del list1[0] # Delete element for index !Некрасивая версия pop!
 
-#
-#for row in multi:
-#    for element in row:
 
-#
-#list(range(1, 10, 1)) # Генератор. 3 параметр - шаг
+for row in multi:
+    for element in row:
+
+list(range(1, 10, 1)) # Генератор. 3 параметр - шаг
 #[1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 # Все ключи в словаре уникальные!
