@@ -1,9 +1,9 @@
-# Game - 'EnigmaInt'
+# Game - 'enigma_int'
 
 from random import randint
 
 
-def enigma_numbers():
+def enigma_int():
     print('\nNew Game!')
     enigma_number = randint(0, 20)
     flag = 0
@@ -19,9 +19,9 @@ def enigma_numbers():
 
 
 while True:
-    answer = input('\nEnter game EnigmaInt? Y/N ')
+    answer = input('\nStart new game EnigmaInt? Y/N ')
     if answer == 'y' or answer == 'Y':
-        enigma_numbers()
+        enigma_int()
     else:
         print('Ok, Goodbye!')
         break
