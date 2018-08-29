@@ -1,12 +1,13 @@
 # Game - 'enigma_str'
 
+
 import random
 
 
 def enigma_str():
     print('''\nNew Game. You have 10 health!
 The computer chose a word. Guess this word!''')
-    enigma_string = ['green']#, 'book','Hockey', 'Sun', 'Python', 'World', 'Administrator']
+    enigma_string = ['green','book','Hockey', 'Sun', 'Python', 'World', 'Administrator']
     chose = random.choice(enigma_string)
     length_word = len(chose)
     print('\nComputer chose a word for', length_word,'letters','.')
@@ -21,10 +22,10 @@ The computer chose a word. Guess this word!''')
             print('\nGreat, Your chose! It\'s -', chose,'!', 'Your health -',health)
             break
         else:
-            #count_letter = chose.count(user_value)
+            # count_letter = chose.count(user_value)
             for value in user_value:
                 if value in chose:
-                    #print('\nThis word have', count_letter, 'letters -', value, '!')
+                    # print('\nThis word have', count_letter, 'letters -', value, '!')
                     indx = chose.index(value)
                     answer[indx] = value
                     print(answer)
