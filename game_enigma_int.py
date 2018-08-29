@@ -11,7 +11,7 @@ def enigma_int():
     while flag != 1:
         user_value = int(input('Enter number: '))
         if user_value == enigma_number:
-            print('Great! Your number -', user_value, 'Enigma number -', enigma_number)
+            print('Great! Your number -', user_value, 'Enigma number -', enigma_number,'.')
             flag = 1
         elif user_value > enigma_number:
             print('Your number > Enigma number! Please enter number again!')
