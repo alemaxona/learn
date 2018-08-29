@@ -1,31 +1,48 @@
-# Game - 'EnigmaStr'
+# Game - 'enigma_str'
 
 import random
 
 
-
-def enigmastr():
-    print('\nNew Game. You have 10 health!')
-    print('The computer chose a word of 4 letters. Guess this word!')
-    enigma_string = ['mari', 'kate', 'alex', 'mama']
+def enigma_str():
+    print('''\nNew Game. You have 10 health!
+The computer chose a word. Guess this word!''')
+    enigma_string = ['green']#, 'book','Hockey', 'Sun', 'Python', 'World', 'Administrator']
     chose = random.choice(enigma_string)
-    flag = 0
-    while flag == 0:
-        health = 10
-        answer = ['_', '_', '_', '_']
-        user_value = input('Enter word or letters: ')
+    length_word = len(chose)
+    print('\nComputer chose a word for', length_word,'letters','.')
+    answer = [i for i in range(0, length_word)]
+    for i in answer:
+        answer[i] = '_'
+    health = 10
+    while health != 0:
+        user_value =input('\nEnter word or letters: ')
+        print(user_value)
         if user_value == chose:
-            print('Great! Your version -', user_value, '.', 'The Computer chose - ', chose, '.', 'Your health -', health, '!', 'Best!')
-            flag = 1
+            print('\nGreat, Your chose! It\'s -', chose,'!', 'Your health -',health)
+            break
         else:
-            if user_value[0] == chose[0]:
-                answer[0] = user_value[0]
-            if len(user_value) > 1 and user_value[1] == chose[1]:
-                answer[1] = user_value[1]
-            if len(user_value) > 2 and user_value[2] == chose[2]:
-                answer[2] = user_value[2]
-            if len(user_value) > 3 and user_value[3] == chose[3]:
-                answer[3] = user_value[3]
-            print(str(answer))
+            #count_letter = chose.count(user_value)
+            for value in user_value:
+                if value in chose:
+                    #print('\nThis word have', count_letter, 'letters -', value, '!')
+                    indx = chose.index(value)
+                    answer[indx] = value
+                    print(answer)
+                    n = '_'
+                    if n not in answer:
+                        print('\nGreat, Your chose! It\'s -', chose, '!', 'Your health -', health)
+                        health = 0
+                else:
+                    health -= 1
+                    print('This letter or word does not right. Your health -', health,'.')
+                    if health == 0:
+                        print('Game stop! You need a health...')
 
-enigmastr()
+
+while True:
+    user_answer = input('\n\nStart new game? Y/N ')
+    if user_answer.upper() == 'Y':
+        enigma_str()
+    else:
+        print('\nOk, goodbye!')
+        break
