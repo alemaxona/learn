@@ -7,7 +7,7 @@ import random
 def enigma_str():
     print('''\nNew Game - enigma_str. You have 10 health!
 The computer chose a word. Guess this word!''')
-    enigma_string = ['green', 'book', 'Hockey', 'Sun', 'Python', 'World', 'Administrator']
+    enigma_string = ['green']#, 'book', 'Hockey', 'Sun', 'Python', 'World', 'Administrator']
     chose = random.choice(enigma_string)
     length_word = len(chose)
     print('\nComputer chose a word for', length_word, 'letters.')
