@@ -1,3 +1,13 @@
+# index letter
+chose = 'max'
+c = 'm'
+index = 0
+c == chose[index]
+#True
+a = chose[index]
+print(a)
+#m
+
 #RANDOM
 from random import randint
 value = randint(0, 20)
