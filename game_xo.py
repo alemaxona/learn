@@ -1,12 +1,6 @@
 # Game - game_xo.
 
-print('''\n Game - XO \n''')
-table = [['*', '*', '*'],
-         ['*', '*', '*'],
-         ['*', '*', '*']]
-user_value = [0, 0]
-for row in table:
-    print(row)
+print('''\n Game - XO''')
 
 
 def check_position_in_table(user_value):
@@ -18,13 +12,29 @@ def check_position_in_table(user_value):
         return True
 
 
-def check_free_position(table):
-    for row in table:
-        for val in row:
-            if val == str('*'):
+def check_user_value(value):
+    if value == '0' or value == '1' or value == '2' or value == '3':
+        if int(value) < 3 or int(value) > 0:
+            if int(value) != 0:
                 return True
             else:
+                print('This value does not exist')
                 return False
+        else:
+            print('This value does not exist')
+            return False
+    else:
+        print('This value does not exist')
+        return False
+
+def check_free_position(table):
+    i = '*'
+    if i == table[0][0] or i == table[0][1] or i == table[0][2]\
+        or i == table[1][0] or i == table[1][1] or i == table[1][2]\
+        or i == table[2][0] or i == table[2][1] or i == table[2][2]:
+        return True
+    else:
+        return False
 
 
 def check_combination():
@@ -62,64 +72,79 @@ def check_combination():
         return False
 
 
-answer = 0
-while answer == 0:
-    while True:
-        if check_free_position(table):
-            user_row = input('\nUser1: Enter row: ')
-            if int(user_row) > 3 or int(user_row) <= 0:
-                print('This row not exist. Please repeat.')
-            else:
-                user_value[0] = int(user_row) - 1
-                break
-            user_col = input('User1: Enter column: ')
-            if int(user_col) > 3 or int(user_col) <= 0:
-                print('This column not exist. Please repeat.')
-            else:
-                user_value[1] = int(user_col) - 1
-                break
+while True:
+    user_answer = input('\n\nStart new game? Y/N ')
+    if user_answer.upper() == 'Y':
+        print('\n')
+        table = [['*', '*', '*'],
+                 ['*', '*', '*'],
+                 ['*', '*', '*']]
+        user_value = [0, 0]
+        for row in table:
+            print(row)
+        result = 0
+        while result == 0:
+            flag_user2 = 0
+            flag_user1 = 0
+            # User1
+            while flag_user1 == 0:
+                if check_free_position(table):
+                    user_row = input('\nUser1: Enter row: ')
+                    user_col = input('User1: Enter column: ')
+                    if check_user_value(user_row) and check_user_value(user_col):
+                        user_value[0] = int(user_row) - 1
+                        user_value[1] = int(user_col) - 1
+                        flag_user1 = 1
+                        if check_position_in_table(user_value):
+                            table[user_value[0]][user_value[1]] = 'X'
+                            print('\n')
+                            for row in table:
+                                print(row)
+                            if check_combination():
+                                result = 1
+                                flag_user2 = 1
+                                break
+                        else:
+                            print('This position is busy. Enter other position.')
+                            flag_user1 = 0
+                    else:
+                        flag_user1 = 0
+                else:
+                    result = 3
+                    break
+                # User2
+            while flag_user2 == 0:
+                if check_free_position(table):
+                    user_row = input('\nUser2: Enter row: ')
+                    user_col = input('User2: Enter column: ')
+                    if check_user_value(user_row) and check_user_value(user_col):
+                        user_value[0] = int(user_row) - 1
+                        user_value[1] = int(user_col) - 1
+                        flag_user2 = 1
+                        if check_position_in_table(user_value):
+                            table[user_value[0]][user_value[1]] = 'O'
+                            print('\n')
+                            for row in table:
+                                print(row)
+                            if check_combination():
+                                result = 2
+                                break
+                        else:
+                            print('This position is busy. Enter other position.')
+                            flag_user2 = 0
+                    else:
+                        flag_user2 = 0
+                else:
+                    result = 3
+                    break
+        if result == 1:
+            print('\nUser1(X) win!')
+        elif result == 2:
+            print('\nUser2(O) win!')
         else:
-            answer = 3
-        if check_position_in_table(user_value):
-            # print(user_value)
-            table[user_value[0]][user_value[1]] = 'X'
-            print('\n')
-            for row in table:
-                print(row)
-            if check_combination():
-                answer = 1
-        else:
-            print('This position is busy. Enter other position.')
-    while True:
-        if check_free_position(table):
-            user_row = input('\nUser2: Enter row: ')
-            if int(user_row) > 3 or int(user_row) <= 0:
-                print('This row not exist. Please repeat.')
-            else:
-                user_value[0] = int(user_row) - 1
-                break
-            user_col = input('User2: Enter column: ')
-            if int(user_col) > 3 or int(user_col) <= 0:
-                print('This column not exist. Please repeat.')
-            else:
-                user_value[1] = int(user_col) - 1
-                break
-        else:
-            answer = 3
-        if check_position_in_table(user_value):
-            # print(user_value)
-            table[user_value[0]][user_value[1]] = 'O'
-            print('\n')
-            for row in table:
-                print(row)
-            if check_combination():
-                answer = 2
-        else:
-            print('This position is busy. Enter other position.')
-
-if answer == 1:
-    print('\nUser1(X) win!')
-elif answer == 2:
-    print('\nUser2(O) win!')
-else:
-    print('\nDraw!')
+            print('\nDraw!')
+    elif user_answer.upper() != 'N':
+        print('Please enter "Y" or "N"!')
+    else:
+        print('Buy!')
+        break
