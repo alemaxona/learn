@@ -1,4 +1,4 @@
-# Game - 'enigma_str'
+# Game - 'enigma_str'. Double letters do not check.
 
 
 import random
