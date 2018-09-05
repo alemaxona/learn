@@ -1,3 +1,12 @@
+# Add __doc__ to function!
+def print_doc():
+    '''Notes for learning.
+
+    This learning Python 3 notes.
+    Here more error.'''
+print(print_doc.__doc__)
+
+
 # index letter
 chose = 'max'
 c = 'm'
