@@ -1,17 +1,36 @@
 # Class
 
-class Door:
-    def open(self):  # note that `self` is the object itself!
-        print('self is', self)
-        print('Door is opened!')
-        self.opened = True
+# int(integer, тип данных) - Это класс, а 1 2 3 - его обекты(еще можно назвать экземпляры)
+# В терминологии Python члены класса называются атрибутами,
+# функции класса — методами, а поля класса — свойствами (или просто атрибутами).
+# Определения методов аналогичны определениям функций,
+# но (за некоторыми исключениями, о которых ниже) методы всегда имеют первый аргумент,
+#  называемый по общепринятому соглашению self.
 
-d = Door()
-d.open()
+class Student(object): # Класс, можно не писть - (object). Имя класса всегда с большой буквы!
+    school = 286 # Атрибут или поле класса
+    learn = 'Python' # Второй атрибут или поле
+    def info(self, name, age):  # Метод. self - ОБЯЗАТЕЛЬНЫЙ аргумент метода. И 2 не обязательных аргумента.
+        self.name = name
+        self.age = age
+        print(self.name, self.age)
 
-d1 = Door()
-d1.open() # == Door.open(d1)
-#
+
+c = Student()
+print(c.school, c.learn)
+#286 Python
+c.name = 'Max'
+c.age = 30
+print('Student {} learn in {}'.format(c.name, c.school))
+# Student Max learn in 286
+
+print(c.info('Kate', 29))
+#Kate 29
+#None
+
+
+
+# Класс конструтор?
 class Table:
     def __init__(self, number_of_legs):
         print('New table has {} legs'.format(number_of_legs))
@@ -25,6 +44,18 @@ class Chair:
 c = Chair('green')
 print(c, c.color)
 
+#class Door(object):
+class Door:
+    def open(self):  # note that `self` is the object itself!
+        print('self is', self)
+        print('Door is opened!')
+        self.opened = True
+
+d = Door()
+d.open()
+
+d1 = Door()
+d1.open() # == Door.open(d1)
 
 # Add __doc__ to function!
 def print_doc():
@@ -33,7 +64,6 @@ def print_doc():
     This learning Python 3 notes.
     Here more error.'''
 print(print_doc.__doc__)
-
 
 # index letter
 chose = 'max'
