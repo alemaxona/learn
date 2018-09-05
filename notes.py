@@ -1,3 +1,31 @@
+# Class
+
+class Door:
+    def open(self):  # note that `self` is the object itself!
+        print('self is', self)
+        print('Door is opened!')
+        self.opened = True
+
+d = Door()
+d.open()
+
+d1 = Door()
+d1.open() # == Door.open(d1)
+#
+class Table:
+    def __init__(self, number_of_legs):
+        print('New table has {} legs'.format(number_of_legs))
+
+t = Table(4)
+#
+class Chair:
+    def __init__(self, color):
+        self.color = color
+
+c = Chair('green')
+print(c, c.color)
+
+
 # Add __doc__ to function!
 def print_doc():
     '''Notes for learning.
