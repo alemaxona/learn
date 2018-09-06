@@ -42,12 +42,20 @@ class Person:
 p1 = Person("Max", "M") # Если не указать аргументы, - будет ошибка!
 print(p1.name, p1.surname)
 #Max M
-#
-class Table:
-    def __init__(self, number_of_legs):
-        print('New table has {} legs'.format(number_of_legs))
 
-t = Table(4)
+
+class Car:
+    engine = 'v8'
+# Здесь пустая строка, так принято!
+    def __init__(self, color):
+        self.color = color
+
+
+t = Car('green')
+print(t.color, t.engine)
+t1 = Car('red')
+print(t1.color)
+
 #
 class Chair:
     def __init__(self, color):
@@ -68,6 +76,66 @@ d.open()
 
 d1 = Door()
 d1.open() # == Door.open(d1)
+
+# Если у класса потомка есть свой конструктор,
+# то объект потомка возьмет конструктор потомка,
+# но методы и атрибуты класса родителя также возьмет!
+class Parent(object):
+    def __init__(self):
+        print('Parent inited')
+        self.value = 'Parent'
+
+    def do(self):
+        print('Parent do(): {}'.format(self.value))
+
+
+class Child(Parent):
+    def __init__(self):
+        print('Child inited')
+        self.value = 'Child'
+
+
+parent = Parent()
+parent.do()
+child = Child()
+child.do()
+
+# Наследование. (Переиспользование кода):
+class Calc(object):
+    def __init__(self, number):
+        self.number = number
+
+    def calc_and_print(self):
+        value = self.calc_value()
+        self.print_number(value)
+
+    def calc_value(self):
+        return self.number * 10 + 2
+
+    def print_number(self, value_to_print):
+        print('-----')
+        print('Number is', value_to_print)
+        print('-----')
+
+
+c = Calc(8)
+c.calc_and_print()
+#-----
+#Number is 82
+#-----
+
+
+class CalcExtraValue(Calc):
+    def calc_value(self):
+        return self.number - 100
+#-----
+#Number is -97
+#-----
+
+
+t = CalcExtraValue(3)
+t.calc_and_print()
+
 
 # Add __doc__ to function!
 def print_doc():
