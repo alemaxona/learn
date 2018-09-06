@@ -8,15 +8,15 @@
 #  называемый по общепринятому соглашению self.
 
 class Student(object): # Класс, можно не писть - (object). Имя класса всегда с большой буквы!
-    school = 286 # Атрибут или поле класса
-    learn = 'Python' # Второй атрибут или поле
-    def info(self, name, age):  # Метод. self - ОБЯЗАТЕЛЬНЫЙ аргумент метода. И 2 не обязательных аргумента.
-        self.name = name
+    school = 286 # Атрибут (или поле класса). Все созданные объекты по этому кклассу будут иметь этот атрибут.
+    learn = 'Python' # Второй атрибут. Все созданные объекты по этому кклассу будут иметь этот атрибут.
+    def info(self, name, age):  # Метод. self - ОБЯЗАТЕЛЬНЫЙ аргумент метода.
+        # И 2 не обязательных аргумента.Все созданные объекты по этому кклассу будут иметь этот метод.
+        self.name = name # 1-ый атрибут метода
         self.age = age
         print(self.name, self.age)
 
-
-c = Student()
+c = Student() # Создание объекта класса Student
 print(c.school, c.learn)
 #286 Python
 c.name = 'Max'
@@ -28,9 +28,21 @@ print(c.info('Kate', 29))
 #Kate 29
 #None
 
+# Класс конструтор
+# Конструктором класса называют метод, который автоматически вызывается при создании объектов.
+# Его также можно назвать конструктором объектов класса.
+# Имя такого метода обычно регламентируется синтаксисом конкретного языка программирования.
+# В Python роль конструктора играет метод __init__().
+class Person:
+    def __init__(self, n, s): # Если аргементам не присовены знаечения(self, n = 3, s = 5), их необходимо будет указывать при создании объекта класса!
+        self.name = n
+        self.surname = s
 
 
-# Класс конструтор?
+p1 = Person("Max", "M") # Если не указать аргументы, - будет ошибка!
+print(p1.name, p1.surname)
+#Max M
+#
 class Table:
     def __init__(self, number_of_legs):
         print('New table has {} legs'.format(number_of_legs))
@@ -62,7 +74,7 @@ def print_doc():
     '''Notes for learning.
 
     This learning Python 3 notes.
-    Here more error.'''
+    Here more errors.'''
 print(print_doc.__doc__)
 
 # index letter
