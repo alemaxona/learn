@@ -1,3 +1,5 @@
+# Можно решить ЛЮБУЮ задачу только с помощью функций!
+# Никита Соболев: Если вы видите global, то нужно использовать класс!
 # Class
 
 # int(integer, тип данных) - Это класс, а 1 2 3 - его обекты(еще можно назвать экземпляры)
@@ -56,13 +58,6 @@ print(t.color, t.engine)
 t1 = Car('red')
 print(t1.color)
 
-#
-class Chair:
-    def __init__(self, color):
-        self.color = color
-
-c = Chair('green')
-print(c, c.color)
 
 #class Door(object):
 class Door:
@@ -100,6 +95,8 @@ parent.do()
 child = Child()
 child.do()
 
+
+# ООП
 # Наследование. (Переиспользование кода):
 class Calc(object):
     def __init__(self, number):
@@ -128,14 +125,95 @@ c.calc_and_print()
 class CalcExtraValue(Calc):
     def calc_value(self):
         return self.number - 100
-#-----
-#Number is -97
-#-----
 
 
 t = CalcExtraValue(3)
 t.calc_and_print()
+#-----
+#Number is -97
+#-----
 
+# Инкапсуляция. Способность скрывать реализацию методов, атрибутов. Практически не работает в Python!
+class Example(object):
+    def __init__(self):
+        self.a = 1 # Если перед атрибутом нет знаков "_" и "__", то можно свободно использовать данный атрибут.
+        self._b = 2 # Если перед атрибутом один знак "_", то это сообщениеразработчикам,
+        # что "лучше не использовать данный метод"!
+        self.__c = 3 # Если перед атрибутом два знака "__", то атрибут становится недоступным для использования.
+        print('{},{},{}'.format(self.a, self._b, self.__c))
+
+    def _max(self):
+        pass
+
+    def __max2(self):
+        pass
+
+    def call(self):
+        print('called')
+
+
+ex = Example()
+print(ex.a)
+print(ex._b)
+print(ex.__c) # Выдаст ошибку!
+
+# Полиморфизм - возможность использовать функции по разному в зависимости от входных аргументов!
+def sum_two_objects(one, two):
+    return one + two
+
+
+a = sum_two_objects(1,2)
+print(a)
+b = sum_two_objects('Max', 'Wow')
+print(b)
+
+#
+class Parent(object):
+    def call(self):
+        print('Parent')
+
+
+class Child(Parent):
+    def call(self):
+        print('Child')
+
+
+class Example(object):
+    def call(self):
+        print('Ex')
+
+
+def call_obj(obj):
+    obj.call()
+
+
+call_obj(Child())
+call_obj(Parent())
+c = Parent()
+c.call()
+
+# Абстрация. Посзоляет упрощать сложные задачи, создавая небольшие классы для решения простых!
+# То есть, если необходимо отправить файл по почте и написать уведомление, то предполагается, что можно это сделать,
+# например, в три этапа: 1) выбрать файл 2) отправить файл по почте 3) написать уведомление.
+
+GLOBAL_VALUE = 2 # Глобальная переменная может быть только одна. С таким именем естесственно!
+
+def do_work(value):
+    return GLOBAL_VALUE * value + 2
+
+def change_var(x):
+    global GLOBAL_VALUE
+    GLOBAL_VALUE = x
+# ==
+class Calc: # А вот объектов класса может быть сколько угодно!
+    def __init__(self, param):
+        self.param = param
+
+    def do_work(self, value):
+        return self.param * value + 2
+
+    def change_var(self, x):
+        self.param = x
 
 # Add __doc__ to function!
 def print_doc():
