@@ -1,4 +1,5 @@
-# Basket, package and objects.
+# 1
+#  Basket, package and objects.
 
 
 class Basket(object):
@@ -65,3 +66,19 @@ kate_bag.show()
 nikita_bag = Package()
 nikita_bag.add_package('Windows 10')
 nikita_bag.show()
+
+
+# 2
+# Figure
+class Figure(object):
+    def __init__(self, value):
+        self.value = value
+
+
+
+
+print('\nBuild figure\n')
+user_value = input('Enter numbers: ')
+user_list = user_value.split(' ')
+
+result = Figure(user_list)
