@@ -73,36 +73,64 @@ print('\n', dir(max_bag))
 
 
 # 2
-# Figure
+# Figure. Don't work.
 
 
 class Figure(object):
     def __init__(self, value):
         self.value = value
-        print(self.value)
+
+    def str_to_int(self, value):
+        self.str = value.split(' ')
+        self.int = []
+        for s in self.str:
+            if s == ' ':
+                continue
+            else:
+                s = int(s)
+            self.int.append(s)
+        return self.int
 
     def square(self, value):
-        self.value = value
-        for i in self.value:
-            self.square = int(i) ** 2
-        print('Square =', self.square)
-        return self.square
+        self.sq = value
+        self.sq = self.sq[0] ** 2
+        print('S Square =', self.sq)
+        return self.sq
+
+    def rectangle(self, value):
+        self.rect = value
+        self.rect = self.rect[0] * self.rect[1]
+        print('S Rectangle =', self.rect)
+        return self.rect
 
     def triangle(self, value):
-        self.value = value
+        self.tri = value
+        self.tri = (self.tri[0] + self.tri[1] + self.tri[2]) / 2
+        print('S Triangle =', self.tri)
+        return self.tri
 
+    def polygon(self, value):
+        self.pol = value
+        self.pol = (self.pol[0] + self.pol[1] + self.pol[2] + self.pol[3]) * 0.5
+        print('S Polygon =', self.pol)
+        return self.pol
 
     def check_numbers(self, value):
-        self.value = value
+        self.value = self.str_to_int(value)
         if len(self.value) == 1:
             self.result = self.square(self.value)
         elif len(self.value) == 2:
+            self.result = self.rectangle(self.value)
+        elif len(self.value) == 3:
             self.result = self.triangle(self.value)
+        elif len(self.value) == 4:
+            self.result = self.polygon(self.value)
+        else:
+            print('Numbers > 4')
 
 
 print('\nBuild figure\n')
-user_value = input('Enter numbers: ')
-user_list = user_value.split(' ')
+user_value = input('Enter one or four numbers: ')
 
-result = Figure(user_list)
+result = Figure(user_value)
 result.check_numbers(user_value)
