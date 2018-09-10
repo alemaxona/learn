@@ -1,16 +1,20 @@
 # 1
-#  Basket, package and objects.
+#  Basket, package, pack and objects.
 
 
 class Basket(object):
     limit_basket = 5
-    limit_package = 4
-    limit_arms = 2
 
     def __init__(self):
+        print('Constructor called.')
         self.list_basket = []
         self.list_package = []
-        self.list_arms = []
+        self.list_pack = []
+
+    def show(self):
+        print('\nBasket:', self.list_basket)
+        print('Package:', self.list_package)
+        print('Pack:', self.list_pack, '\n')
 
     def add_basket(self, value):
         self.value = value
@@ -20,14 +24,10 @@ class Basket(object):
         else:
             print('Basket is busy. Item -', self.value, 'not added! Basket have 5 items: ', self.list_basket)
 
-    def show(self):
-        print('Basket:', self.list_basket)
-        print('Package:', self.list_package)
-        print('Arms:', self.list_arms)
-
-
 
 class Package(Basket):
+    limit_package = 4
+
     def add_package(self, value):
         self.value = value
         if len(self.list_package) < self.limit_package:
@@ -37,44 +37,67 @@ class Package(Basket):
             print('Package is busy. Item -', self.value, 'not added! Your package have 4 items: ', self.list_package)
 
 
-class Arms(Package):
-    def add_arms(self, value):
+class Pack(Package):
+    limit_pack = 2
+
+    def add_pack(self, value):
         self.value = value
-        if len(self.list_arms) < self.limit_arms:
-            self.list_arms.append(self.value)
-            print('Arms have -', self.list_arms)
-        elif len(self.list_arms) == 2:
-            print('Arms is busy. Item -', self.value, 'not added! Arms have 2 items -', self.list_arms)
+        if len(self.list_pack) < self.limit_pack:
+            self.list_pack.append(self.value)
+            print('Pack have -', self.list_pack)
+        elif len(self.list_pack) == 2:
+            print('Pack is busy. Item -', self.value, 'not added! Pack have 2 items -', self.list_pack)
 
 
-max_bag = Arms()
-max_bag.add_arms('Mac')
-max_bag.add_arms('iPhone 8')
-max_bag.add_arms('Apple TV')
+max_bag = Pack()
+max_bag.add_pack('Mac')
+max_bag.add_pack('iPhone 8')
+max_bag.add_pack('Apple TV')
 max_bag.add_basket('AirPods')
 max_bag.add_basket('AirPods red')
-max_bag.add_package('Windows 7')
+max_bag.add_package('PostgreSQL')
 max_bag.show()
 
-kate_bag = Arms()
-kate_bag.add_arms('iPhone 7')
-kate_bag.add_arms('MacBook Pro')
-kate_bag.add_arms('iPhone 5')
+kate_bag = Pack()
+kate_bag.add_pack('Oracle Database 11G')
+kate_bag.add_pack('MacBook Pro')
+kate_bag.add_pack('iPhone XX')
 kate_bag.add_package('Mac OS 10')
 kate_bag.show()
 
 nikita_bag = Package()
-nikita_bag.add_package('Windows 10')
+nikita_bag.add_package('MySQL')
 nikita_bag.show()
+
+print('\n', dir(max_bag))
 
 
 # 2
 # Figure
+
+
 class Figure(object):
     def __init__(self, value):
         self.value = value
+        print(self.value)
+
+    def square(self, value):
+        self.value = value
+        for i in self.value:
+            self.square = int(i) ** 2
+        print('Square =', self.square)
+        return self.square
+
+    def triangle(self, value):
+        self.value = value
 
 
+    def check_numbers(self, value):
+        self.value = value
+        if len(self.value) == 1:
+            self.result = self.square(self.value)
+        elif len(self.value) == 2:
+            self.result = self.triangle(self.value)
 
 
 print('\nBuild figure\n')
@@ -82,3 +105,4 @@ user_value = input('Enter numbers: ')
 user_list = user_value.split(' ')
 
 result = Figure(user_list)
+result.check_numbers(user_value)
