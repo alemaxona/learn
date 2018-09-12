@@ -6,7 +6,6 @@ class Basket(object):
     limit_basket = 5
 
     def __init__(self):
-        print('Constructor called.')
         self.list_basket = []
         self.list_package = []
         self.list_pack = []
@@ -18,7 +17,7 @@ class Basket(object):
 
     def add_basket(self, value):
         self.value = value
-        if len(self.list_basket) < self.limit_basket:
+        if len(self.list_basket) < Basket.limit_basket:
             self.list_basket.append(self.value)
             print('You added one', self.value, 'in basket. Your basket have: ', self.list_basket)
         else:
@@ -30,7 +29,7 @@ class Package(Basket):
 
     def add_package(self, value):
         self.value = value
-        if len(self.list_package) < self.limit_package:
+        if len(self.list_package) < Package.limit_package:
             self.list_package.append(self.value)
             print('You added one', self.value, 'in package. Package have: ', self.list_package)
         else:
@@ -42,7 +41,7 @@ class Pack(Package):
 
     def add_pack(self, value):
         self.value = value
-        if len(self.list_pack) < self.limit_pack:
+        if len(self.list_pack) < Pack.limit_pack:
             self.list_pack.append(self.value)
             print('Pack have -', self.list_pack)
         elif len(self.list_pack) == 2:
@@ -73,64 +72,111 @@ print('\n', dir(max_bag))
 
 
 # 2
-# Figure. Don't work.
+# Figure. Bad work.
 
 
 class Figure(object):
     def __init__(self, value):
         self.value = value
 
-    def str_to_int(self, value):
-        self.str = value.split(' ')
-        self.int = []
-        for s in self.str:
-            if s == ' ':
-                continue
-            else:
-                s = int(s)
-            self.int.append(s)
-        return self.int
+    def search_perimeter(self):
+        index = 0
+        self.p = 0
+        while index < len(self.value):
+            self.p += self.value[index]
+            index += 1
+        return self.p
 
-    def square(self, value):
-        self.sq = value
-        self.sq = self.sq[0] ** 2
-        print('S Square =', self.sq)
-        return self.sq
 
-    def rectangle(self, value):
-        self.rect = value
-        self.rect = self.rect[0] * self.rect[1]
-        print('S Rectangle =', self.rect)
-        return self.rect
+class Triangle(Figure):
+    def search_s(self):
+        self.s_tri = self.value[0] + self.value[1] + self.value[2]
+        print('S(Triangle) =', self.s_tri)
+        print('P(Triangle)', self.search_perimeter())
+        return self.s_tri
 
-    def triangle(self, value):
-        self.tri = value
-        self.tri = (self.tri[0] + self.tri[1] + self.tri[2]) / 2
-        print('S Triangle =', self.tri)
-        return self.tri
 
-    def polygon(self, value):
-        self.pol = value
-        self.pol = (self.pol[0] + self.pol[1] + self.pol[2] + self.pol[3]) * 0.5
-        print('S Polygon =', self.pol)
-        return self.pol
+class Rectangle(Triangle):
+    def search_s(self):
+        self.s_rec = (self.value[0] + self.value[1]) * 2
+        print('S(Rectangle) =', self.s_rec)
+        print('P(Rectangle)', self.search_perimeter())
 
-    def check_numbers(self, value):
-        self.value = self.str_to_int(value)
-        if len(self.value) == 1:
-            self.result = self.square(self.value)
-        elif len(self.value) == 2:
-            self.result = self.rectangle(self.value)
-        elif len(self.value) == 3:
-            self.result = self.triangle(self.value)
-        elif len(self.value) == 4:
-            self.result = self.polygon(self.value)
+
+class Square(Rectangle):
+    def search_s(self):
+        self.s_squ = self.value[0] ** 2
+        print('S(Square) =', self.s_squ)
+        print('P(Square)', self.search_perimeter())
+
+
+class Polygon(Rectangle):
+    def search_s(self):
+        self.s_pol = Triangle.search_s(self) * self.value[3]
+        print('S(Polygon) =', self.s_pol)
+        print('P(Polygon)', self.search_perimeter())
+
+
+def check_user_value(value):
+    value = value.split(' ')
+    user_list = []
+    index = 0
+    while index < len(value):
+        if value[index] == ' ':
+            continue
         else:
-            print('Numbers > 4')
+            try:
+                value[index] = int(value[index])
+                user_list.append(value[index])
+                index += 1
+            except ValueError:
+                print('Error: Please enter only numbers!')
+                break
+    return user_list
 
 
 print('\nBuild figure\n')
 user_value = input('Enter one or four numbers: ')
+a = check_user_value(user_value)
+if len(a) == 1:
+    result = Square(a)
+    result.search_s()
+elif len(a) == 2:
+    result = Rectangle(a)
+    result.search_s()
+elif len(a) == 3:
+    result = Triangle(a)
+    result.search_s()
+elif len(a) == 4:
+    result = Polygon(a)
+    result.search_s()
+else:
+    print('You entered more numbers than 4.')
 
-result = Figure(user_value)
-result.check_numbers(user_value)
+#------------------------------------------------------------
+    # ЗАДАЧА 1
+    #
+    # Реализовать класс Person, у которого должно быть два публичных поля: age и name.
+    # Также у него должен быть следующий набор методов: know(person),
+    #    который позволяет добавить другого человека в список знакомых.
+    # И метод is_known(person), который возвращает знакомы ли два человека
+
+    # ЗАДАЧА 2
+    #
+    # Есть класс, который выводит информацию в консоль: Printer,
+    # у него есть метод: log(*values).
+    # Написать класс FormattedPrinter, который выводит в консоль информацию, окружая ее строками из *
+
+    # ЗАДАЧА 3
+    #
+    # Написать класс Animal и Human,
+    # сделать так, чтобы некоторые животные были опасны для человека (хищники, ядовитые).
+    # Другие - нет. За что будет отвечать метод is_dangerous(animal)
+
+    # Слегка дополнил задачу:
+    # Человек наследуется от животного.
+    # И у животных и у людей добавлен параметр агрессии.
+    # У животного и у человека есть метод Атаковать человека.
+    # Если параметр агрессии у нападающего и жертвы совпадает считается,
+    # что жертва отбилась и не считает нападавшего опасным.
+    # В противном случае жертва добавляет нападающего в перечень опасных для себя существ
