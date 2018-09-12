@@ -153,30 +153,86 @@ elif len(a) == 4:
 else:
     print('You entered more numbers than 4.')
 
-#------------------------------------------------------------
-    # ЗАДАЧА 1
-    #
-    # Реализовать класс Person, у которого должно быть два публичных поля: age и name.
-    # Также у него должен быть следующий набор методов: know(person),
-    #    который позволяет добавить другого человека в список знакомых.
-    # И метод is_known(person), который возвращает знакомы ли два человека
 
-    # ЗАДАЧА 2
-    #
-    # Есть класс, который выводит информацию в консоль: Printer,
-    # у него есть метод: log(*values).
-    # Написать класс FormattedPrinter, который выводит в консоль информацию, окружая ее строками из *
+# ЗАДАЧА 1
+#
+# Реализовать класс Person, у которого должно быть два публичных поля: age и name.
+# Также у него должен быть следующий набор методов: know(person),
+#    который позволяет добавить другого человека в список знакомых.
+# И метод is_known(person), который возвращает знакомы ли два человека
 
-    # ЗАДАЧА 3
-    #
-    # Написать класс Animal и Human,
-    # сделать так, чтобы некоторые животные были опасны для человека (хищники, ядовитые).
-    # Другие - нет. За что будет отвечать метод is_dangerous(animal)
 
-    # Слегка дополнил задачу:
-    # Человек наследуется от животного.
-    # И у животных и у людей добавлен параметр агрессии.
-    # У животного и у человека есть метод Атаковать человека.
-    # Если параметр агрессии у нападающего и жертвы совпадает считается,
-    # что жертва отбилась и не считает нападавшего опасным.
-    # В противном случае жертва добавляет нападающего в перечень опасных для себя существ
+class Person(object):
+    __friends = []
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def show(self):
+        print(self.name, self.age, 'years old.')
+
+    def know(self, person):
+        self.person = person
+        Person.__friends.append(self.person.name)
+        print(self.name, 'added', self.person.name, 'to friends.')
+
+    def is_know(self, name_one):
+        self.name_one = name_one
+        if self.name in Person.__friends:
+            print('Yes', self.name_one, 'your friend.')
+        else:
+            print('No', self.name_one, 'not', self.name, 'friend.')
+
+    def is_know_they(self, name, name_two):
+        self.name = name
+        self.name_two = name_two
+        if self.name in Person.__friends:
+            if self.name_two in Person.__friends:
+                print('Yes', self.name, 'and', self.name_two, 'is friends.')
+            else:
+                print('No', self.name, 'and', self.name_two, 'isn\'t friends.')
+        else:
+            print('No', self.name, 'and', self.name_two, 'isn\'t friends.')
+
+
+max = Person('Max', 30)
+max.show()
+
+kate = Person('Kate', 29)
+kate.show()
+
+nikita = Person('Nikita', 25)
+nikita.show()
+
+elena = Person('Elena', 21)
+elena.show()
+
+elena.know(nikita)
+kate.know(nikita)
+nikita.know(kate)
+
+max.know(kate)
+max.is_know('Ivan')
+max.is_know_they('Kate', 'Nikita')
+max.is_know_they('Elena', 'Kate')
+
+# ЗАДАЧА 2
+#
+# Есть класс, который выводит информацию в консоль: Printer,
+# у него есть метод: log(*values).
+# Написать класс FormattedPrinter, который выводит в консоль информацию, окружая ее строками из *
+
+# ЗАДАЧА 3
+#
+# Написать класс Animal и Human,
+# сделать так, чтобы некоторые животные были опасны для человека (хищники, ядовитые).
+# Другие - нет. За что будет отвечать метод is_dangerous(animal)
+
+# Слегка дополнил задачу:
+# Человек наследуется от животного.
+# И у животных и у людей добавлен параметр агрессии.
+# У животного и у человека есть метод Атаковать человека.
+# Если параметр агрессии у нападающего и жертвы совпадает считается,
+# что жертва отбилась и не считает нападавшего опасным.
+# В противном случае жертва добавляет нападающего в перечень опасных для себя существ
