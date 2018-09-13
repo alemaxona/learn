@@ -163,7 +163,7 @@ else:
 
 
 class Person(object):
-    __friends = []
+    __friends = {}
 
     def __init__(self, name, age):
         self.name = name
@@ -174,26 +174,22 @@ class Person(object):
 
     def know(self, person):
         self.person = person
-        Person.__friends.append(self.person.name)
+        Person.__friends[self.name] = self.person.name
         print(self.name, 'added', self.person.name, 'to friends.')
 
-    def is_know(self, name_one):
-        self.name_one = name_one
-        if self.name in Person.__friends:
-            print('Yes', self.name_one, 'your friend.')
-        else:
-            print('No', self.name_one, 'not', self.name, 'friend.')
-
-    def is_know_they(self, name, name_two):
+    def is_know(self, name, name_two):
         self.name = name
         self.name_two = name_two
-        if self.name in Person.__friends:
-            if self.name_two in Person.__friends:
-                print('Yes', self.name, 'and', self.name_two, 'is friends.')
-            else:
-                print('No', self.name, 'and', self.name_two, 'isn\'t friends.')
+        self.key = Person.__friends[self.name]
+        self.value = Person.__friends.get(self.name)
+        self.key_two = Person.__friends[self.name]
+        self.value_two = Person.__friends.get(self.name_two)
+        if self.value == self.name_two:
+            print('Yes.', self.name, 'and', self.name_two, 'is friends!')
+        elif self.value_two == self.name:
+            print('Yes.', self.name, 'and', self.name_two, 'is friends!')
         else:
-            print('No', self.name, 'and', self.name_two, 'isn\'t friends.')
+            print('No.', self.name, 'and', self.name_two, 'isn\'t friends!')
 
 
 max = Person('Max', 30)
@@ -213,9 +209,10 @@ kate.know(nikita)
 nikita.know(kate)
 
 max.know(kate)
-max.is_know('Ivan')
-max.is_know_they('Kate', 'Nikita')
-max.is_know_they('Elena', 'Kate')
+
+max.is_know('Kate', 'Nikita')
+max.is_know('Elena', 'Kate')
+
 
 # ЗАДАЧА 2
 #
