@@ -220,6 +220,34 @@ max.is_know('Elena', 'Kate')
 # у него есть метод: log(*values).
 # Написать класс FormattedPrinter, который выводит в консоль информацию, окружая ее строками из *
 
+
+class Printer(object):
+    def log(self, *values):
+        self.values = values
+        return self.values
+
+
+class FormatedPrinter(Printer):
+    def Printer(self, values):
+        self.values = values
+        self.format_str = ''
+        self.format_str += '* '
+        for i in self.values:
+            self.format_str += str(i)
+            if i == self.values[-1]:
+                self.format_str += '. *'
+            else:
+                self.format_str += ', '
+        print('*' * len(self.format_str))
+        print(self.format_str)
+        print('*' * len(self.format_str))
+
+
+rez = FormatedPrinter()
+a = rez.log('Max', 2, 'Python', 345, 'Yes, yes yeeeees!')
+rez.Printer(a)
+
+
 # ЗАДАЧА 3
 #
 # Написать класс Animal и Human,
