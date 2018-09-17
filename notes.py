@@ -1,3 +1,129 @@
+# Перегрузить(оператор) - Переопределить, например переменную.
+# Магические операторы:
+# Нельзя создать свой магический метод, они все определены заранее.
+# Самое частое - это сравнение.
+class MathMethod(object):
+    def __init__(self):
+        self.value = 2
+
+    def __add__(self, other):
+        return self.value + other
+
+t = MathMethod()
+print(t + 4)
+print(t.__add__(4))
+# 6
+# 6
+
+#
+__author__ = 'sobolevn'
+
+# Магические - Математические и логические методы.
+class MathObject(object):
+    def __init__(self, value):
+        self.value = value
+
+    # Comparing:
+    def __eq__(self, other):
+        return self.value == other
+
+    def __ge__(self, other):
+        return self.value >= other
+
+    def __gt__(self, other):
+        return self.value > other
+
+    def __lt__(self, other):
+        return self.value < other
+
+    # Operations:
+    def __neg__(self):
+        return -self.value
+
+    def __add__(self, other):
+        return self.value + other
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __iadd__(self, other):
+        return self.__add__(other)
+
+    def __mul__(self, other):
+        return self.value * other
+
+if __name__ == '__main__':
+    m = MathObject(10.) # Это float, то есть 10.0.
+    # m = MathMethod(.0) - 0.0 тоже float
+    print(m > 10)
+    print(m >= 10)
+    print(m == 10)
+
+    print(-m)
+    print(m + 2 == 2 + m)
+
+    m += 3
+    print(m)
+    print(m * 2)
+
+# super() - Переиспользование методов родительского класса.
+class Calc(object):
+    def __init__(self, value):
+        print('Calc constructor is called')
+        self.value = value
+
+    def count(self):
+        return self.value * 8 + 9
+
+
+class DoubleCalc(Calc):
+    def count(self):
+        return 2 * super().count()
+
+
+class ExtendedCalc(DoubleCalc):
+    def __init__(self, value, k=1):
+        super().__init__(value) # Идет сразу в Calc!
+        print('Extender', self.value)
+
+        self.k = k
+
+    def count(self):
+        previous = super().count() # Сначала идет в DoubleCalc, потом в Calc!
+
+        return -1 * self.k * previous
+
+e = ExtendedCalc(8, k=1.2)
+print(e.count())
+print(ExtendedCalc.__mro__) # Структура наследования! Как метод super() определяет в какой класс идти- __mro__!
+# (<class '__main__.ExtendedCalc'>, <class '__main__.DoubleCalc'>, <class '__main__.Calc'>, <class 'object'>
+
+#
+class Animal(object):
+    def __init__(self, aggression, name):
+        self.name = name
+        self.aggression = aggression
+        self.victim = []
+
+    def is_dangerous(self, obj): # Передача объекта как аргумент!
+        if obj.name in self.victim:
+            print('Yes.', obj.name, 'is dangerous for', self.name)
+        else:
+            print('No.', obj.name, 'don\'t dangerous for', self.name)
+
+    # ...
+
+class Human(Animal):
+
+    def out(self):
+        print('Human')
+
+    # ...
+
+snake = Animal(4, 'snake')
+maxim = Human(1, 'Max')
+snake.is_dangerous(maxim)
+
 # !!!
 class Test(object):
     a = 2
@@ -43,7 +169,7 @@ print(c.info('Kate', 29))
 #Kate 29
 #None
 
-# Класс конструтор
+# Класс конструтор. Отвечает за инициализацию переменных!
 # Конструктором класса называют метод, который автоматически вызывается при создании объектов.
 # Его также можно назвать конструктором объектов класса.
 # Имя такого метода обычно регламентируется синтаксисом конкретного языка программирования.
