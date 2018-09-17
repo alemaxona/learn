@@ -261,3 +261,48 @@ rez.Printer(a)
 # Если параметр агрессии у нападающего и жертвы совпадает считается,
 # что жертва отбилась и не считает нападавшего опасным.
 # В противном случае жертва добавляет нападающего в перечень опасных для себя существ
+
+
+class Animal(object):
+    def __init__(self, aggression, name):
+        self.name = name
+        self.aggression = aggression
+        self.victim = []
+
+    def is_dangerous(self, obj):
+        if obj.name in self.victim:
+            print('Yes.', obj.name, 'is dangerous for', self.name)
+        else:
+            print('No.', obj.name, 'don\'t dangerous for', self.name)
+
+    def attack(self, obj):
+        if obj.aggression < self.aggression:
+            print('Attack!', self.name, 'attacked', obj.name)
+            obj.victim.append(self.name)
+        else:
+            print(self.name, 'attacked, but', obj.name, 'blocked the attack!')
+
+
+class Human(Animal):
+    ''' This Human attack replace animal attack. '''
+
+    def attack(self, obj):
+        if obj.aggression < self.aggression:
+            print('Attack!', self.name, 'attacked', obj.name)
+            obj.victim.append(self.name)
+        else:
+            print(self.name, 'attacked, but', obj.name, 'blocked the attack!')
+
+
+snake = Animal(4, 'snake')
+maxim = Human(1, 'Max')
+mouse = Animal(0, 'Mouse')
+kate = Human(0, 'Kate')
+
+snake.attack(maxim)
+mouse.attack(snake)
+mouse.attack(kate)
+
+snake.is_dangerous(maxim)
+maxim.is_dangerous(snake)
+kate.is_dangerous(mouse)
