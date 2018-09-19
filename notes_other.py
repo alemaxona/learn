@@ -1,3 +1,23 @@
+#  Если словарь пустой то возвращается False!
+bool({}) # По сути идет сравнение длины, если длина = 0, то возвращается False!
+# False
+bool ({'Max': 5})
+# True
+
+
+# Короткая записб условия
+value  = 2
+
+if value > 0:
+    print(str(value))
+else:
+    print('')
+
+#==
+
+print(str(value)) if value > 0 else print('')
+
+
 # index letter
 chose = 'max'
 c = 'm'
