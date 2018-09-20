@@ -70,7 +70,7 @@ if __name__ == '__main__':
 # Магические методы со словарями
 class DictFunctionality(object):
     def __init__(self, values=None):
-        if values is None:
+        if values is None: # is - типа ==
                 self.values = {}
         elif isinstance(values, dict):
                 self.values = values
@@ -80,6 +80,9 @@ class DictFunctionality(object):
     # Converting to string:
     def __str__(self):
         return str(self.values) if self.values else ''
+
+t = DictFunctionality()
+print(t) # Сразу пойдет в метод __str__, не в начало класса!
 
     # Items management:
     def __getitem__(self, key):
@@ -96,7 +99,33 @@ l = DictFunctionality({'1key': 'some_value'})
 l[1] = 'item1'
 
 
-# super() - Переиспользование методов родительского класса.
+# `in` operation:
+    def __contains__(self, item):
+        return item in self.values
+
+l = DictFunctionality()
+print(2 in t)
+# True or False
+
+    def __len__(self):
+        return len(self.values)  # self.values.__len__()
+
+print(len(l))
+
+#
+if __name__ == '__main__':
+    l = DictFunctionality({'1key': 'some_value'}) # Вызов: __init__
+    l[1] = 'item1' # Вызов: __setitem__
+    print(str(l), l[1]) # Вызов: __str__ and __getitem__
+
+    for item in l:
+        print(item, l[item])
+
+    print('s' in l, 1 in l) # Вызов: __contains__
+    print(len(l)) # Вызов: __len__
+
+
+#! super() - Переиспользование методов родительского класса.
 class Calc(object):
     def __init__(self, value):
         print('Calc constructor is called')
