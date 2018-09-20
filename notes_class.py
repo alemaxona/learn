@@ -1,3 +1,5 @@
+# class type() ???
+
 # Перегрузить(оператор) - Переопределить, например переменную.
 # Магические операторы:
 # Нельзя создать свой магический метод, они все определены заранее.
@@ -124,6 +126,25 @@ if __name__ == '__main__':
     print('s' in l, 1 in l) # Вызов: __contains__
     print(len(l)) # Вызов: __len__
 
+
+# Статические атрибуты и методы
+class MathObject(object):
+    value = 2 # Статический атрибут!
+
+    def __init__(self, i):
+        self.value = i
+
+    @staticmethod # Статический метод
+    def count(): # self уже не нужен
+        return 'some'
+
+t = MathObject(10)
+print(t.value, t.__class__.value) #t.value - значение обекта, t.__class__.value( == MathObject.value) - значение класса.
+# 10 2
+print(MathObject.count())
+# some
+print(t.count()) # ==
+# some
 
 #! super() - Переиспользование методов родительского класса.
 class Calc(object):
