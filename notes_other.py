@@ -1,3 +1,17 @@
+# Встроенные объекты. (list, int, dict, len...)
+import builtins # Можно не импортировать!
+print(dir(__builtins__))
+
+# Короткая запись - Списковые выражения:
+s = [w for w in range(1, 14)]
+print(s)
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+
+s = [w for w in range(1, 14) if w % 2 == 0]
+print(s)
+# [2, 4, 6, 8, 10, 12]
+
+#
 import os
 print(os)
 #<module 'os' from '/usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/lib/python3.7/os.py'>
