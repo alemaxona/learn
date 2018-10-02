@@ -1,3 +1,71 @@
+# Декораторы - принимают на вход функцию и возвращают функцию.
+def action_decorator(func):
+    def inner(text):
+        print('Someone is going to', func.__name__)
+        func(text)
+
+    return inner
+
+
+@action_decorator # == sh = action_decorator(shout) # try to uncomment me
+def shout(text):
+    print(text.upper(), '!!!!')
+
+
+@action_decorator
+def whisper(text):
+    print(text.lower(), '...')
+
+
+@action_decorator
+def say(something):
+    something += '; was said.'
+    print(something)
+
+
+if __name__ == '__main__':
+    # Basic functions:
+    say('hi')
+    whisper('Hello')
+    shout('i am here')
+#
+# lambda - функция для одного раза. У нее есть все, кроме имени! У нее нет return!
+x = lambda : print('Hey')
+x()
+# Hey
+
+d = lambda x, y: x+ y # Обязательно нужен хотябы 1 аргумент! Здесь - 2(x и y).
+d(2, 3)
+# 5
+
+# filter - остовляет из массива только то что удовлетворяет условию.
+s = [1, 2, 3, 'max', 4, 5, 'max']
+print(list(filter(lambda x: x != 'max', s)))
+# [1, 2, 3, 4 ,5]
+
+# map - выполняет функцию для каждого объекта из массива данных.
+m = map(lambda x: x * x, [1, 2, 3, 4,])
+print(m)
+# <map object at 0x103a15278>
+list(m)
+# [1, 4, 9, 16]
+
+# reduce - выполняет функцию для каждого объекта из массива входных параметров, оперируя остатком.
+from functools import reduce
+r = [1, 4, 2, 3]
+
+result = reduce(lambda x, y: x + y, r)
+print(result)
+#10
+
+result = reduce(lambda x, y: print(x,y), r)
+print(result)
+#1 4
+#None 2
+#None 3
+#None
+
+
 # Add __doc__ to function!
 def print_doc():
     '''Notes for learning.
