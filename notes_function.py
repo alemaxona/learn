@@ -1,32 +1,19 @@
 # Декораторы - принимают на вход функцию и возвращают функцию.
 def action_decorator(func):
     def inner(text):
-        print('Someone is going to', func.__name__)
+        print('Someone is going to:::', text, func.__name__)
         func(text)
+        print('After')
 
     return inner
 
 
-@action_decorator # == sh = action_decorator(shout) # try to uncomment me
+@action_decorator
 def shout(text):
     print(text.upper(), '!!!!')
 
 
-@action_decorator
-def whisper(text):
-    print(text.lower(), '...')
-
-
-@action_decorator
-def say(something):
-    something += '; was said.'
-    print(something)
-
-
 if __name__ == '__main__':
-    # Basic functions:
-    say('hi')
-    whisper('Hello')
     shout('i am here')
 #
 # lambda - функция для одного раза. У нее есть все, кроме имени! У нее нет return!

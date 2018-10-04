@@ -1,3 +1,16 @@
+#
+a = ['s', 'b', 'g']
+
+print(range(len(a)))
+#range(0, 3)
+
+for i in range(len(a)):
+    print(a[i])
+#s
+#b
+#g
+
+
 # Встроенные объекты. (list, int, dict, len...)
 import builtins # Можно не импортировать!
 print(dir(__builtins__))
