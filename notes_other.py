@@ -12,7 +12,7 @@ for i in range(len(a)):
 
 
 # Встроенные объекты. (list, int, dict, len...)
-import builtins # Можно не импортировать!
+import builtins  # Можно не импортировать!
 print(dir(__builtins__))
 
 # Короткая запись - Списковые выражения:
@@ -90,7 +90,7 @@ else:
 
 #==
 
-print(str(value)) if value > 0 else print('')
+print(str(value) if value > 0 else print(''))
 
 
 # index letter
@@ -188,7 +188,7 @@ for k in s:
 #1 str
 #None 3
 
-for k, v in s.items():
+for k, v in s.items():  # ==
     print(k, v)
 #s s
 #1 str

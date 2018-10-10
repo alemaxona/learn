@@ -2,7 +2,7 @@
 
 # Если модуль импортирован с условим ниже, то в функция в условии не выполнится сразу, только по вызову!
 # Если этого условия нет, - функция выполнится сразу при импорте!
-if __name__ == '__main__': # Она либо равна  __main__, либо имени того файла, из которого делали импорт!
+if __name__ == '__main__':  # Она либо равна  __main__, либо имени того файла, из которого делали импорт!
     function()
 
 
@@ -91,7 +91,7 @@ class DictFunctionality(object):
         return str(self.values) if self.values else ''
 
 t = DictFunctionality()
-print(t) # Сразу пойдет в метод __str__, не в начало класса!
+print(t)  # Сразу пойдет в метод __str__, не в начало класса!
 
     # Items management:
     def __getitem__(self, key):
@@ -125,33 +125,48 @@ print(len(l))
 if __name__ == '__main__':
     l = DictFunctionality({'1key': 'some_value'}) # Вызов: __init__
     l[1] = 'item1' # Вызов: __setitem__
-    print(str(l), l[1]) # Вызов: __str__ and __getitem__
+    print(str(l), l[1])  # Вызов: __str__ and __getitem__
 
     for item in l:
         print(item, l[item])
 
-    print('s' in l, 1 in l) # Вызов: __contains__
-    print(len(l)) # Вызов: __len__
+    print('s' in l, 1 in l)  # Вызов: __contains__
+    print(len(l))  # Вызов: __len__
 
 
 # Статические атрибуты и методы
 class MathObject(object):
-    value = 2 # Статический атрибут!
+    value = 2  # Статический атрибут, атрибюут класса, общий для объектов класса!
 
     def __init__(self, i):
         self.value = i
 
-    @staticmethod # Статический метод
-    def count(): # self уже не нужен
+    @staticmethod  # Статический метод
+    def count():  # self уже не нужен
         return 'some'
 
 t = MathObject(10)
-print(t.value, t.__class__.value) #t.value - значение обекта, t.__class__.value( == MathObject.value) - значение класса.
+print(t.value, t.__class__.value)  # t.value - значение обекта, t.__class__.value( == MathObject.value) - значение класса.
 # 10 2
 print(MathObject.count())
 # some
-print(t.count()) # ==
+print(t.count())  # ==
 # some
+
+
+class MathObject2(object):
+    value = 2  # Статический атрибут!
+
+    def __init__(self, i):
+        self.value = i
+
+    @classmethod  # Метод класса, не объекта!
+    def count(cls):  # cls (class, как self у методов объекта) - то есть принадлежит классу, а не объкуто созданного из данного класса!
+        return cls.value
+
+t = MathObject2(10)
+print(t.value, t.count())
+
 
 #! super() - Переиспользование методов родительского класса.
 class Calc(object):
@@ -170,20 +185,20 @@ class DoubleCalc(Calc):
 
 class ExtendedCalc(DoubleCalc):
     def __init__(self, value, k=1):
-        super().__init__(value) # Сначала идет в DoubleCalc, если там нет -  в Calc!
+        super().__init__(value)  # Сначала идет в DoubleCalc, если там нет -  в Calc!
         print('Extender', self.value)
 
         self.k = k
 
     def count(self):
-        previous = super().count() # Сначала идет в DoubleCalc, потом в Calc!
+        previous = super().count()  # Сначала идет в DoubleCalc, потом в Calc!
 
         return -1 * self.k * previous
 
 
 e = ExtendedCalc(8, k=1.2)
 print(e.count())
-print(ExtendedCalc.__mro__) # Структура наследования! Как метод super() определяет в какой класс идти- __mro__!
+print(ExtendedCalc.__mro__)  # Структура наследования! Как метод super() определяет в какой класс идти- __mro__!
 # (<class '__main__.ExtendedCalc'>, <class '__main__.DoubleCalc'>, <class '__main__.Calc'>, <class 'object'>
 
 
@@ -193,7 +208,7 @@ class Animal(object):
         self.aggression = aggression
         self.victim = []
 
-    def is_dangerous(self, obj): # Передача объекта как аргумент!
+    def is_dangerous(self, obj):  # Передача объекта как аргумент!
         if obj.name in self.victim:
             print('Yes.', obj.name, 'is dangerous for', self.name)
         else:
@@ -226,8 +241,8 @@ class Test(object):
 b = Test()
 b.main(2)
 
-Test.a = 12 # Поменяет значение в классе!
-b.a = 12 # Поменяет значение в объекте, в инстансе!
+Test.a = 12  # Поменяет значение в классе!
+b.a = 12  # Поменяет значение в объекте, в инстансе!
 
 # Можно решить ЛЮБУЮ задачу только с помощью функций!
 # Никита Соболев: Если вы видите global, то нужно использовать класс!
@@ -244,12 +259,12 @@ class Student(object): # Класс, можно не писть - (object). Им
     learn = 'Python' # Второй атрибут. Все созданные объекты по этому кклассу будут иметь этот атрибут.
     def info(self, name, age):  # Метод. self - ОБЯЗАТЕЛЬНЫЙ аргумент метода.
         # И 2 не обязательных аргумента.Все созданные объекты по этому кклассу будут иметь этот метод.
-        self.name = name # 1-ый атрибут метода
+        self.name = name  # 1-ый атрибут метода
         self.age = age
         print(self.name, self.age)
 
 
-c = Student() # Создание объекта класса Student
+c = Student()  # Создание объекта класса Student
 print(c.school, c.learn)
 # 286 Python
 c.name = 'Max'
@@ -268,12 +283,12 @@ print(c.info('Kate', 29))
 # Имя такого метода обычно регламентируется синтаксисом конкретного языка программирования.
 # В Python роль конструктора играет метод __init__().
 class Person:
-    def __init__(self, n, s): # Если аргементам не присовены знаечения(self, n = 3, s = 5), их необходимо будет указывать при создании объекта класса!
+    def __init__(self, n, s):  # Если аргементам не присовены знаечения(self, n = 3, s = 5), их необходимо будет указывать при создании объекта класса!
         self.name = n
         self.surname = s
 
 
-p1 = Person("Max", "M") # Если не указать аргументы, - будет ошибка!
+p1 = Person("Max", "M")  # Если не указать аргументы, - будет ошибка!
 print(p1.name, p1.surname)
 # Max M
 
@@ -303,7 +318,7 @@ d = Door()
 d.open()
 
 d1 = Door()
-d1.open() # == Door.open(d1)
+d1.open()  # == Door.open(d1)
 
 
 # Если у класса потомка есть свой конструктор,
@@ -371,10 +386,10 @@ t.calc_and_print()
 # Инкапсуляция. Способность скрывать реализацию методов. Практически не работает в Python!
 class Example(object):
     def __init__(self):
-        self.a = 1 # Если перед атрибутом нет знаков "_" и "__", то можно свободно использовать данный атрибут.
-        self._b = 2 # Если перед атрибутом один знак "_", то это сообщениеразработчикам,
+        self.a = 1  # Если перед атрибутом нет знаков "_" и "__", то можно свободно использовать данный атрибут.
+        self._b = 2  # Если перед атрибутом один знак "_", то это сообщениеразработчикам,
         # что "лучше не использовать данный метод"!
-        self.__c = 3 # Если перед атрибутом два знака "__", то атрибут становится недоступным для использования.
+        self.__c = 3  # Если перед атрибутом два знака "__", то атрибут становится недоступным для использования.
         print('{},{},{}'.format(self.a, self._b, self.__c))
 
     def _max(self):
@@ -390,7 +405,7 @@ class Example(object):
 ex = Example()
 print(ex.a)
 print(ex._b)
-print(ex.__c) # Выдаст ошибку!
+print(ex.__c)  # Выдаст ошибку!
 
 
 # Полиморфизм - возможность использовать функции по разному в зависимости от входных аргументов!
@@ -434,7 +449,7 @@ c.call()
 # То есть, если необходимо отправить файл по почте и написать уведомление, то предполагается, что можно это сделать,
 # например, в три этапа: 1) выбрать файл 2) отправить файл по почте 3) написать уведомление.
 
-GLOBAL_VALUE = 2 # Глобальная переменная может быть только одна. С таким именем естесственно!
+GLOBAL_VALUE = 2  # Глобальная переменная может быть только одна. С таким именем естесственно!
 
 
 def do_work(value):
@@ -447,7 +462,7 @@ def change_var(x):
 
 
 # ==
-class Calc: # А вот объектов класса может быть сколько угодно!
+class Calc:  # А вот объектов класса может быть сколько угодно!
     def __init__(self, param):
         self.param = param
 
