@@ -47,10 +47,12 @@ s = [w for w in range(1, 14) if w % 2 == 0]
 print(s)
 # [2, 4, 6, 8, 10, 12]
 
+
 #
 import os
 print(os)
 #<module 'os' from '/usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/lib/python3.7/os.py'>
+
 
 # Сравнение
 1 == 1 # По сути сравнение ячеек памяти.
