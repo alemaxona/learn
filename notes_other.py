@@ -1,6 +1,8 @@
-# Очень важно!
-# При создании двумерного списка(наподобие матрицы) необходимо пользоваться генераторами!
-# Без генератора получается следущее:
+'''
+Очень важно!
+При создании двумерного списка(наподобие матрицы) необходимо пользоваться генераторами!
+Без генератора получается следущее:
+'''
 
 n = 3
 a = [[0] * n] * n
@@ -8,30 +10,29 @@ print(a)
 # [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 a[0][0] = 5
 print(a)
-#[[5, 0, 0], [5, 0, 0], [5, 0, 0]]  # Так как переменная просто использует (в данном случае) 3 ссылки на список n!
+# [[5, 0, 0], [5, 0, 0], [5, 0, 0]]  # Так как переменная просто использует (в данном случае) 3 ссылки на список n!
 
 
 # С генератором:
 a = [[0] * n for i in range(n)]
 a[0][0] = 5
-#[[5, 0, 0], [0, 0, 0], [0, 0, 0]]
+# [[5, 0, 0], [0, 0, 0], [0, 0, 0]]
 # Или
 a = [[0 for j in range(n)] for i in range(n)]
 a[0][0] = 5
-#[[5, 0, 0], [0, 0, 0], [0, 0, 0]]
-
+# [[5, 0, 0], [0, 0, 0], [0, 0, 0]]
 
 #
 a = ['s', 'b', 'g']
 
 print(range(len(a)))
-#range(0, 3)
+# range(0, 3)
 
 for i in range(len(a)):
     print(a[i])
-#s
-#b
-#g
+# s
+# b
+# g
 
 
 # Встроенные объекты. (list, int, dict, len...)
@@ -51,25 +52,25 @@ print(s)
 #
 import os
 print(os)
-#<module 'os' from '/usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/lib/python3.7/os.py'>
+# <module 'os' from '/usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/lib/python3.7/os.py'>
 
 
 # Сравнение
-1 == 1 # По сути сравнение ячеек памяти.
+1 == 1  # По сути сравнение ячеек памяти.
 
 a = 257
-b = 257 # Так как > 256 (С кешем связано...)
+b = 257  # Так как > 256 (С кешем связано...)
 a is b
-#False
+# False
 id(a), id(b)
-#(31833360, 31833120)
+# (31833360, 31833120)
 
 a = 256
 b = 256
 a is b
-#True
-id(a), id(b) #Посмотреть ячейку памяти
-#(266881264, 266881264)
+# True
+id(a), id(b)  # Посмотреть ячейку памяти
+# (266881264, 266881264)
 
 1 == True
 # True
@@ -113,7 +114,7 @@ if value > 0:
 else:
     print('')
 
-#==
+# ==
 
 print(str(value) if value > 0 else print(''))
 
@@ -123,47 +124,47 @@ chose = 'max'
 c = 'm'
 index = 0
 c == chose[index]
-#True
+# True
 a = chose[index]
 print(a)
-#m
+# m
 
 
 #
-s, k = (1, 2) #Но не s,k,m = (1,2)
+s, k = (1, 2)  # Но не s,k,m = (1,2)
 print(s, k)
-#1 2
+# 1 2
 
 first, *second = (1, 2, 3, 4, 5)
 print(first, second)
-#1 [2, 3, 4, 5]
+# 1 [2, 3, 4, 5]
 
 *f,s = 'Moscow'
 print(f)
-#['M', 'o', 's', 'c', 'o']
+# ['M', 'o', 's', 'c', 'o']
 
 
 #
 print('Word', end = '!')
-#Word!>>>
+# Word!>>>
 
 print('Word', end = '\n')
-#Word
-#>>>
+# Word
+# >>>
 print('Max', end='!') #Не переходит на новую строку
 print('Max', end='\n')
 
 
-#RANDOM
+# RANDOM
 from random import randint
 value = randint(0, 20)
 print(value)
-#12
+# 12
 
 import random
 items = ['one', 'two', 'three', 'four', 'five']
 random.choice(items)
-#'four'
+# 'four'
 
 #
 tuple1 = (1, 2, 'string', 'one more', )
@@ -220,69 +221,3 @@ for k, v in s.items():  # ==
 #None 3
 
 #s.pop('s') # Удаляет и ключ и значение
-
-#
-try:
-    print(1 / 0)
-except Exception:  # it is almost the same as just `except:`
-    print('0!!')
-#
-#try:
-#    1 / 0
-#except ValueError: # Не сработает так как ошибка ZeroDivisionError а не ValueError!
-#    print('0!!')
-
-try:
-    1 / 0
-except ZeroDivisionError: # Сработает так как ошибка ZeroDivisionError!
-    print('0!!')
-#
-try:
-    1 / int(input('x: '))
-except ZeroDivisionError:
-    print('/0')
-except TypeError:
-    print('WrongValue')
-
-#
-try:
-    print(1 / 0)
-except ZeroDivisionError as e: # В переменную!
-    print('Exception! Stop it!')
-    print(e)
-#
-raise IndexError('Hi!') # Выкинуть ошибку
-#
-try:
-    raise TypeError('Some message')
-except TypeError as e:
-    print(e)
-#Some message
-
-try:
-    print('Fine')
-except KeyError:
-    print('Nope')
-else:
-    print('Else clause')
-#Fine
-#Else clause
-
-try:
-    print(1 / 0)
-except ZeroDivisionError:
-    print('0!')
-finally: # finally всегда работает!
-    print('I will be called in the end!')
-#0!
-#I will be called in the end!
-
-try:
-    print('try')
-except ValueError:
-    pass #Игнорирует ошибку!
-    print('else')
-finally:
-    print('finally')
-
-
