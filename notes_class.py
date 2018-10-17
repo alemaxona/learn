@@ -3,7 +3,7 @@
 # Если модуль импортирован с условим ниже, то в функция в условии не выполнится сразу, только по вызову!
 # Если этого условия нет, - функция выполнится сразу при импорте!
 if __name__ == '__main__':  # Она либо равна  __main__, либо имени того файла, из которого делали импорт!
-    function()
+    pass  # function()
 
 
 # Перегрузить(оператор) - Переопределить, например переменную.
@@ -79,7 +79,7 @@ if __name__ == '__main__':
 # Магические методы со словарями
 class DictFunctionality(object):
     def __init__(self, values=None):
-        if values is None: # is - типа ==
+        if values is None:  # is - типа ==
                 self.values = {}
         elif isinstance(values, dict):
                 self.values = values
@@ -89,9 +89,6 @@ class DictFunctionality(object):
     # Converting to string:
     def __str__(self):
         return str(self.values) if self.values else ''
-
-t = DictFunctionality()
-print(t)  # Сразу пойдет в метод __str__, не в начало класса!
 
     # Items management:
     def __getitem__(self, key):
@@ -104,27 +101,35 @@ print(t)  # Сразу пойдет в метод __str__, не в начало 
         del self.values[key]
 
 
+t = DictFunctionality()
+print(t)  # Сразу пойдет в метод __str__, не в начало класса!
+
+
 l = DictFunctionality({'1key': 'some_value'})
 l[1] = 'item1'
 
 
 # `in` operation:
-    def __contains__(self, item):
-        return item in self.values
+def __contains__(self, item):
+    return item in self.values
+
 
 l = DictFunctionality()
+
 print(2 in t)
 # True or False
 
-    def __len__(self):
-        return len(self.values)  # self.values.__len__()
+
+def __len__(self):
+    return len(self.values)  # self.values.__len__()
+
 
 print(len(l))
 
 #
 if __name__ == '__main__':
-    l = DictFunctionality({'1key': 'some_value'}) # Вызов: __init__
-    l[1] = 'item1' # Вызов: __setitem__
+    l = DictFunctionality({'1key': 'some_value'})  # Вызов: __init__
+    l[1] = 'item1'  # Вызов: __setitem__
     print(str(l), l[1])  # Вызов: __str__ and __getitem__
 
     for item in l:
@@ -164,11 +169,31 @@ class MathObject2(object):
     def count(cls):  # cls (class, как self у методов объекта) - то есть принадлежит классу, а не объкуто созданного из данного класса!
         return cls.value
 
+
 t = MathObject2(10)
 print(t.value, t.count())
+t.__class__.value = 3  # Изменение статического атрибута.
 
 
-#! super() - Переиспользование методов родительского класса.
+#
+class MathObject3(object):
+    count = 0  # Статический атрибут!
+
+    def __init__(self):
+        self.__class__.count += 1
+
+
+m1 = MathObject3()
+print(m1.count)
+# 1
+m2 = MathObject3()
+print(m2.count)
+# 2
+print(MathObject3.count)
+# 2
+
+
+# ! super() - Переиспользование методов родительского класса.
 class Calc(object):
     def __init__(self, value):
         print('Calc constructor is called')
@@ -233,6 +258,7 @@ snake.is_dangerous(maxim)
 # !!!
 class Test(object):
     a = 2
+
     def main(self, value):
         self.value = value
         print(self.a + self.value)
@@ -254,9 +280,12 @@ b.a = 12  # Поменяет значение в объекте, в инстан
 # Определения методов аналогичны определениям функций,
 # но (за некоторыми исключениями, о которых ниже) методы всегда имеют первый аргумент,
 #  называемый по общепринятому соглашению self.
-class Student(object): # Класс, можно не писть - (object). Имя класса всегда с большой буквы!
+
+
+class Student(object):  # Класс, можно не писть - (object). Имя класса всегда с большой буквы!
     school = 286 # Атрибут (или поле класса). Все созданные объекты по этому кклассу будут иметь этот атрибут.
     learn = 'Python' # Второй атрибут. Все созданные объекты по этому кклассу будут иметь этот атрибут.
+
     def info(self, name, age):  # Метод. self - ОБЯЗАТЕЛЬНЫЙ аргумент метода.
         # И 2 не обязательных аргумента.Все созданные объекты по этому кклассу будут иметь этот метод.
         self.name = name  # 1-ый атрибут метода
@@ -296,6 +325,7 @@ print(p1.name, p1.surname)
 class Car:
     engine = 'v8'
 # Здесь пустая строка, так принято!
+
     def __init__(self, color):
         self.color = color
 
