@@ -16,11 +16,11 @@ if __name__ == '__main__':
     shout('i am here')
 #
 # lambda - функция для одного раза. У нее есть все, кроме имени! У нее нет return!
-x = lambda : print('Hey')
+x = lambda: print('Hey')
 x()
 # Hey
 
-d = lambda x, y: x+ y  # Обязательно нужен хотябы 1 аргумент! Здесь - 2(x и y).
+d = lambda x, y: x + y  # Обязательно нужен хотябы 1 аргумент! Здесь - 2(x и y).
 d(2, 3)
 # 5
 
@@ -30,7 +30,7 @@ print(list(filter(lambda x: x != 'max', s)))
 # [1, 2, 3, 4 ,5]
 
 # map - выполняет функцию для каждого объекта из массива данных.
-m = map(lambda x: x * x, [1, 2, 3, 4,])
+m = map(lambda x: x * x, [1, 2, 3, 4])
 print(m)
 # <map object at 0x103a15278>
 list(m)
@@ -42,14 +42,14 @@ r = [1, 4, 2, 3]
 
 result = reduce(lambda x, y: x + y, r)
 print(result)
-#10
+# 10
 
-result = reduce(lambda x, y: print(x,y), r)
+result = reduce(lambda x, y: print(x, y), r)
 print(result)
-#1 4
-#None 2
-#None 3
-#None
+# 1 4
+# None 2
+# None 3
+# None
 
 
 # Add __doc__ to function!
@@ -62,8 +62,8 @@ def print_doc():
 
 
 # FUNCTIONS Всегда с маленькой буквы!
-def return_none(x):
-    print('Param was', x)  # Если у функции нет return то она возвращает None!
+def return_none(y):
+    print('Param was', y)  # Если у функции нет return то она возвращает None!
 
 
 test = return_none(6)
@@ -139,11 +139,35 @@ accept_args(values)  # Будет ошибка!
 accept_args(*values)  # Будет работать! Распаковка! Tuple => List
 
 
-def accept_kwargs(**kawargs):
-    print(kawargs)
+def accept_kwargs(**kwargs):
+    print(kwargs)
 
 
 accept_kwargs(name='Max', job='DBA')
-values = {'day':'wed', 'month':'may'}
+values = {'day': 'wed', 'month': 'may'}
 accept_kwargs(values)  # Будет ошибка!
 accept_kwargs(**values)  # Будет работать! Распаковка! Сколько пар - столько и ключей!
+
+
+def min_user(a, b):
+    if a < b:
+        return a
+    else:
+        return b
+
+
+x = min_user(min_user(25, 35), 10)  # Функция как аргумент
+print(x)
+# 10
+
+
+# Глобальные переменные можно изменить в функции только у изменяемых типов(list, tuple...)
+def my(z):
+    z.append(10)
+    # z = [10]  # Не сработает? так как это уже присваивание!
+
+
+a = []
+my(a)
+print(a)
+# [10]
