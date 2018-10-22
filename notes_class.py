@@ -1,5 +1,35 @@
 #  Почитать - class type() ???
 
+
+# Передача объекта как аргумента метода!
+class Animal(object):
+    def __init__(self, aggression, name):
+        self.name = name
+        self.aggression = aggression
+        self.victim = []
+
+    def is_dangerous(self, obj):  # Передача объекта как аргумент!
+        if obj.name in self.victim:
+            print('Yes.', obj.name, 'is dangerous for', self.name)
+        else:
+            print('No.', obj.name, 'don\'t dangerous for', self.name)
+
+    # ...
+
+
+class Human(Animal):
+
+    def out(self):
+        print('Human')
+
+    # ...
+
+
+snake = Animal(4, 'snake')
+maxim = Human(1, 'Max')
+snake.is_dangerous(maxim)
+
+
 # Если модуль импортирован с условим ниже, то в функция в условии не выполнится сразу, только по вызову!
 # Если этого условия нет, - функция выполнится сразу при импорте!
 if __name__ == '__main__':  # Она либо равна  __main__, либо имени того файла, из которого делали импорт!
@@ -150,6 +180,7 @@ class MathObject(object):
     def count():  # self уже не нужен
         return 'some'
 
+
 t = MathObject(10)
 print(t.value, t.__class__.value)  # t.value - значение обекта, t.__class__.value( == MathObject.value) - значение класса.
 # 10 2
@@ -225,34 +256,6 @@ e = ExtendedCalc(8, k=1.2)
 print(e.count())
 print(ExtendedCalc.__mro__)  # Структура наследования! Как метод super() определяет в какой класс идти- __mro__!
 # (<class '__main__.ExtendedCalc'>, <class '__main__.DoubleCalc'>, <class '__main__.Calc'>, <class 'object'>
-
-
-class Animal(object):
-    def __init__(self, aggression, name):
-        self.name = name
-        self.aggression = aggression
-        self.victim = []
-
-    def is_dangerous(self, obj):  # Передача объекта как аргумент!
-        if obj.name in self.victim:
-            print('Yes.', obj.name, 'is dangerous for', self.name)
-        else:
-            print('No.', obj.name, 'don\'t dangerous for', self.name)
-
-    # ...
-
-
-class Human(Animal):
-
-    def out(self):
-        print('Human')
-
-    # ...
-
-
-snake = Animal(4, 'snake')
-maxim = Human(1, 'Max')
-snake.is_dangerous(maxim)
 
 
 # !!!
