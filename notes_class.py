@@ -1,33 +1,20 @@
 #  Почитать - class type() ???
 
 
-# Передача объекта как аргумента метода!
-class Animal(object):
-    def __init__(self, aggression, name):
+# Создание списка из объектов!
+class MyClass(object):
+    def __init__(self, name):
         self.name = name
-        self.aggression = aggression
-        self.victim = []
 
-    def is_dangerous(self, obj):  # Передача объекта как аргумент!
-        if obj.name in self.victim:
-            print('Yes.', obj.name, 'is dangerous for', self.name)
-        else:
-            print('No.', obj.name, 'don\'t dangerous for', self.name)
-
-    # ...
+    def sum(self):
+        print(1 + 2)
 
 
-class Human(Animal):
+x = [MyClass('Max') for i in range(0, 3)]
 
-    def out(self):
-        print('Human')
-
-    # ...
-
-
-snake = Animal(4, 'snake')
-maxim = Human(1, 'Max')
-snake.is_dangerous(maxim)
+print(x)
+print(x[0].name)
+x[1].sum()
 
 
 # Если модуль импортирован с условим ниже, то в функция в условии не выполнится сразу, только по вызову!
@@ -180,7 +167,6 @@ class MathObject(object):
     def count():  # self уже не нужен
         return 'some'
 
-
 t = MathObject(10)
 print(t.value, t.__class__.value)  # t.value - значение обекта, t.__class__.value( == MathObject.value) - значение класса.
 # 10 2
@@ -256,6 +242,34 @@ e = ExtendedCalc(8, k=1.2)
 print(e.count())
 print(ExtendedCalc.__mro__)  # Структура наследования! Как метод super() определяет в какой класс идти- __mro__!
 # (<class '__main__.ExtendedCalc'>, <class '__main__.DoubleCalc'>, <class '__main__.Calc'>, <class 'object'>
+
+
+class Animal(object):
+    def __init__(self, aggression, name):
+        self.name = name
+        self.aggression = aggression
+        self.victim = []
+
+    def is_dangerous(self, obj):  # Передача объекта как аргумент!
+        if obj.name in self.victim:
+            print('Yes.', obj.name, 'is dangerous for', self.name)
+        else:
+            print('No.', obj.name, 'don\'t dangerous for', self.name)
+
+    # ...
+
+
+class Human(Animal):
+
+    def out(self):
+        print('Human')
+
+    # ...
+
+
+snake = Animal(4, 'snake')
+maxim = Human(1, 'Max')
+snake.is_dangerous(maxim)
 
 
 # !!!
