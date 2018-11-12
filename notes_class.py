@@ -1,6 +1,26 @@
 #  Почитать - class type() ???
 
 
+# Передача класса как аргумента
+
+class Message:
+    def __init__(self, author, text):
+        self.author = author
+        self.text = text
+
+
+class ChatHistory:
+    def __init__(self):
+        self.messages = []
+
+    def new_message(self, message: Message):
+        self.messages.append(message)
+
+
+history = ChatHistory()
+history.new_message(Message('Max', 'Hello World!'))
+
+
 # Создание списка из объектов!
 class MyClass(object):
     def __init__(self, name):
