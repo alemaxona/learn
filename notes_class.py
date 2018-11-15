@@ -1,8 +1,50 @@
-#  Почитать - class type() ???
+# Почитать - class type() ???
+
+
+# Декоратры: @property - добавление и "name".setter - измененеие
+class Circle:
+    def __init__(self, x, y, r):
+        self.x = x
+        self.y = y
+        self.r = r
+
+    @property
+    def r(self):
+        return self._r
+
+    @r.setter
+    def r(self, r):
+        if r < 0:
+            raise ValueError('R do not - ')
+        self._r = r
+
+
+c = Circle(0, 0, -3)
+c = Circle(0, 0, 3)
+c.r = 4
+print(c.r)
+c.r = -3
+
+
+# Вызов метода из переменной в классе
+class Circle:
+    def __init__(self, x, y, r):
+        self.x = x
+        self.y = y
+        self.set_r(r)
+
+    def set_r(self, r):
+        if r < 0:
+            raise ValueError('R do not - ')
+        self._r = r
+
+
+c = Circle(0, 0, 3)
+print(c._r)
+c.set_r(-1)
 
 
 # Передача класса как аргумента
-
 class Message:
     def __init__(self, author, text):
         self.author = author
