@@ -1,3 +1,25 @@
+# Задачка Егора
+
+__author__ = 'alemaxona'
+
+s = 'TBTXDB01.interrao.ru\nDB_USER=2\nDB_PASS=1\n#DB_NAME=tbtxdb01_test_20171116\n#DB_NAME=app04_db01_20180122\n#DB_NAME=app04_db01_201800205\n#DB_NAME=app04_db01_20180329\n#DB_NAME=app04_db01_20180619\nDB_NAME=app04_db01_20180927\nDEBUG=true\nDISPOSER_SITE_FOLDER=interrao\nFILE_CACHE=false\n"]'
+
+output = s.split('\n')
+
+
+def pars_str(value):
+    for i in value:
+        if i[0] == 'D' and \
+                i[1] == 'B' and \
+                i[2] == '_' and \
+                i[3] == 'N':
+            out = i.split('=')
+            return out[1]
+
+
+print(pars_str(output))
+
+
 # Копирование (.copy()) очень аккуратно! (https://pythonworld.ru/moduli/modul-copy.html)
 a = {}
 b = [[0, 0], [1, 1], [2, 2]]
