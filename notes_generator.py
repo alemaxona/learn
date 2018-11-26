@@ -49,7 +49,10 @@ def fib():
         yield 'value'
 
 
-# Получение генераторы из массива - функия iter
+# Получение генератора из списка, строки... - функия iter
+x = iter('123')
+print(x)
+# <str_iterator object at 0x005B1234>
 x = iter([1, 2, 3])
 print(x)
 # <list_iterator object at 0x005B0950>
