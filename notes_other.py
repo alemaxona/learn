@@ -1,14 +1,54 @@
-# Задачка Егора
-
 __author__ = 'alemaxona'
 
-s = 'TBTXDB01.interrao.ru\nDB_USER=2\nDB_PASS=1\n#DB_NAME=tbtxdb01_test_20171116\n#DB_NAME=app04_db01_20180122\n#DB_NAME=app04_db01_201800205\n#DB_NAME=app04_db01_20180329\n#DB_NAME=app04_db01_20180619\nDB_NAME=app04_db01_20180927\nDEBUG=true\nDISPOSER_SITE_FOLDER=interrao\nFILE_CACHE=false\n"]'
 
+# Условие в одну строку:
+def user_func(a=None):
+    return a + 3 if a != None else 'It\'s none'
+
+
+print(user_func(2))
+print(user_func())
+# 5
+# It's none
+
+# Работа с файлами
+# Создание, чтение, запись и добавление в\из файл\а
+filename = 'file_create_with_python.txt'
+open('filename', 'a')  # Создание фала в текущей дирректории
+open('file.txt', 'r')  # r - read - Чтение из файла
+open('file.txt', 'w')  # w - write  - Запись из файла
+open('file.txt', 'a')  # a - append - Добавление в конец строки файла
+# Обязательно нужно закрывать файл!
+f = open('file.txt')
+f.close()
+
+
+# Эквивалентные операции.
+with open('file.txt', 'w') as f:  # with - Закрывает файл и удаляет мусор даже, если будет ошибка.
+    f.write('Hello world!')
+
+f = open('file.txt', 'r')
+# Если тут будет ошибка, файл не закроется!
+print(f.read())
+f.close()
+
+
+# Создание каталога (в windows)
+from os import *
+source = r'C:\Project\dir_create_with_python'  # r - отключает механизм экранирования
+makedirs(source)
+
+
+# Задачка Егора
+s = 'TBTXDB01.interrao.ru\nDB_USER=2\nDB_PASS=1\n#DB_NAME=tbtxdb01_test_20171116\n' \
+    '#DB_NAME=app04_db01_20180122\n#DB_NAME=app04_db01_201800205\n' \
+    '#DB_NAME=app04_db01_20180329\n#DB_NAME=app04_db01_20180619\n' \
+    'DB_NAME=app04_db01_20180927\nDEBUG=true\nDISPOSER_SITE_FOLDER=interrao\nFILE_CACHE=false\n"]'
 output = s.split('\n')
 
 
-def pars_str(value):
-    for i in value:
+def pars_str(string):
+    for i in string:
         if i[0] == 'D' and \
                 i[1] == 'B' and \
                 i[2] == '_' and \
@@ -161,8 +201,8 @@ isinstance(b, list)
 # True
 isinstance(b, tuple)
 # False
-c = (4,5,6)
-isinstance(c,tuple)
+c = (4, 5, 6)
+isinstance(c, tuple)
 # True
 
 #  Если словарь пустой то возвращается False!
@@ -249,13 +289,13 @@ print(new_tuple)
 # (1, 2)
 
 #
-list1 = [1, 2 ]
-list2 = [7, 8 ]
-list1.append(list2) # Мутация, append - добавление в список 1 елемент
+list1 = [1, 2]
+list2 = [7, 8]
+list1.append(list2)  # Мутация, append - добавление в список 1 елемент
 print(list1)
 # [1, 2, [7, 8]]
 
-list1.extend(list2) # Мутация, extend - добавление нескольких елементов
+list1.extend(list2)  # Мутация, extend - добавление нескольких елементов
 print(list1)
 # [1, 2, 7, 8]
 

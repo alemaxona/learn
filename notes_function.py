@@ -1,3 +1,25 @@
+# Декораторы ???
+# https://habr.com/post/141411/
+# https://habr.com/post/141501/
+
+
+# Декораторы практика
+def user_decor(func):
+    def decor():
+        print('Hello')
+        func()
+        print('Bye')
+    return decor
+
+
+@user_decor
+def user_func():
+    print(1 + 2)
+
+
+user_func()
+
+
 # Декораторы - принимают на вход функцию и возвращают функцию.
 def action_decorator(func):
     def inner(text):

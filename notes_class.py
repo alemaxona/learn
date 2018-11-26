@@ -106,6 +106,9 @@ print(t.__add__(4))
 
 
 # Магические - Математические и логические методы.
+# Когда мы выполняем подсчет длины, проход циклом, или вывод, то выполняется заранее
+# определенный магический метод: __len__, __iter__, __str__!
+# Здесь приводится переиспользование некторых магических методов.
 class MathObject(object):
     def __init__(self, value):
         self.value = value
@@ -207,15 +210,15 @@ print(len(l))
 
 #
 if __name__ == '__main__':
-    l = DictFunctionality({'1key': 'some_value'})  # Вызов: __init__
-    l[1] = 'item1'  # Вызов: __setitem__
-    print(str(l), l[1])  # Вызов: __str__ and __getitem__
+    l = DictFunctionality({'1key': 'some_value'})  # Вызов: __init__...
+    l[1] = 'item1'  # Вызов: __setitem__...
+    print(str(l), l[1])  # Вызов: __str__, __getitem__...
 
     for item in l:
         print(item, l[item])
 
-    print('s' in l, 1 in l)  # Вызов: __contains__
-    print(len(l))  # Вызов: __len__
+    print('s' in l, 1 in l)  # Вызов: __contains__...
+    print(len(l))  # Вызов: __len__...
 
 
 # Статические атрибуты и методы
@@ -229,8 +232,10 @@ class MathObject(object):
     def count():  # self уже не нужен
         return 'some'
 
+
 t = MathObject(10)
-print(t.value, t.__class__.value)  # t.value - значение обекта, t.__class__.value( == MathObject.value) - значение класса.
+# t.value - значение обекта, t.__class__.value( == MathObject.value) - значение класса.
+print(t.value, t.__class__.value)
 # 10 2
 print(MathObject.count())
 # some
@@ -245,7 +250,8 @@ class MathObject2(object):
         self.value = i
 
     @classmethod  # Метод класса, не объекта!
-    def count(cls):  # cls (class, как self у методов объекта) - то есть принадлежит классу, а не объкуто созданного из данного класса!
+    # cls (class, как self у методов объекта) - то есть принадлежит классу, а не объкуто созданного из данного класса!
+    def count(cls):
         return cls.value
 
 
@@ -302,7 +308,7 @@ class ExtendedCalc(DoubleCalc):
 
 e = ExtendedCalc(8, k=1.2)
 print(e.count())
-print(ExtendedCalc.__mro__)  # Структура наследования! Как метод super() определяет в какой класс идти- __mro__!
+print(ExtendedCalc.__mro__)  # Структура наследования! определяет в какой класс идти - __mro__!
 # (<class '__main__.ExtendedCalc'>, <class '__main__.DoubleCalc'>, <class '__main__.Calc'>, <class 'object'>
 
 
@@ -491,7 +497,7 @@ t.calc_and_print()
 
 # Наследование от множества классов
 # Если родительские классы равнозначны - проход по классам слева на право.
-# __mro__ - покажет очередность!
+# __mro__ - покажет очередность классов!
 
 class TestIn:
     pass
