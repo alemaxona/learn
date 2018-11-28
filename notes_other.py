@@ -11,37 +11,6 @@ print(user_func())
 # 5
 # It's none
 
-# Работа с файлами
-# Создание, чтение, запись и добавление в\из файл\а
-filename = 'file_create_with_python.txt'
-open(filename, 'a')  # Создание фала в текущей дирректории
-open('file.txt', 'r')  # r - read - Чтение из файла
-open('file.txt', 'w')  # w - write  - Запись из файла
-open('file.txt', 'a')  # a - append - Добавление в конец строки файла
-# Обязательно нужно закрывать файл!
-f = open('file.txt')
-f.close()
-
-
-# Эквивалентные операции.
-with open('file.txt', 'w') as f:  # with - Закрывает файл и удаляет мусор даже, если будет ошибка.
-    f.write('Hello world!')
-
-f = open('file.txt', 'r')
-# Если тут будет ошибка, файл не закроется!
-print(f.read())
-f.close()
-
-# Если кодировка(по умолчанию - utf8) не понимает строки в файле, то ее
-# можно ппрочитать по байтово (f = open('file.txt', 'rb')), а потом декодировать
-# в другую кодировку (a = f.decode('cp1251'))!
-
-
-# Создание каталога (в windows)
-from os import *
-source = r'C:\Project\dir_create_with_python'  # r - отключает механизм экранирования
-makedirs(source)
-
 
 # Задачка Егора
 s = 'TBTXDB01.interrao.ru\nDB_USER=2\nDB_PASS=1\n#DB_NAME=tbtxdb01_test_20171116\n' \
