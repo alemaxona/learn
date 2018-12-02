@@ -1,5 +1,32 @@
 __author__ = 'alemaxona'
 
+# смена позиций
+a = [1, 2]
+a[0], a[1] = a[1], a[0]
+# [2, 1]
+
+# Узнать индекс элемента в массиве
+l = [0, 1, 2, 3, 4, 5, 6, 7, 'X', 9, 10, 11, 12, 13, 14, 15]
+print(l.index('X'))
+# 8
+
+# Фишка с выводом!
+field = list(range(0, 16))
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+for i in range(0, 16, 4):
+    print(field[i:i + 4])
+
+# [1, 2, 3, 4]
+# [5, 6, 7, 8]
+# [9, 10, 11, 12]
+# [13, 14, 15]
+
+# Или со строкой:
+st = 'Maxim world'
+print(st[1:1+3])
+# axi
+
 
 # Условие в одну строку:
 def user_func(a=None):
@@ -239,12 +266,21 @@ print('Word', end='\n')
 print('Max', end='!')  # Не переходит на новую строку
 print('Max', end='\n')
 
+i = '!'
+print('Max', i)
+# Max !
+
+i = '!'
+print('Max', i, sep='')  # sep -  По умолчанию пробел, можно поставить любой разделитель!
+# Max!
+
 
 # RANDOM
 from random import randint
 value = randint(0, 20)
 print(value)
 # 12
+
 
 import random
 items = ['one', 'two', 'three', 'four', 'five']
