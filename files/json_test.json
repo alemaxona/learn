@@ -1,0 +1,10 @@
+{
+    "string": "abc",
+    "number": 1,
+    "none": null,
+    "array": [1, 2, "Max"],
+    "object": {
+        "key": ["value", false]
+    }
+
+}
