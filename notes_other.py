@@ -17,16 +17,19 @@ __author__ = 'alemaxona'
 
 import re
 
-name_pattern = r'My name is .*\.'
+name_pattern = r'My name is .*\.'  # \. - Точка, а не любой символ!
 is_name = re.match(name_pattern, 'My name is Maxim.')
 print('is name:', bool(is_name))
 
 is_name = re.match(name_pattern, 'I am just a string.')
 print('is name:', bool(is_name))
 
-name_pattern_group = r'My name is (.*)\.'
+name_pattern_group = r'My name is (.*)\.'  # (.*) - Скобки для вывода метода findall
 name = re.findall(name_pattern_group, 'My name is Maxim.')
 print(name)
+# is name: True
+# is name: False
+# ['Maxim']
 
 
 # смена позиций (переброс ссылок)
