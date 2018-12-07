@@ -1,5 +1,140 @@
 # Почитать - class type() ???
 
+# Метапрограммирование
+# Создание типа - наподобие list:
+
+
+class ListView:
+    def __init__(self, lst, start, stop):
+        self._lst = lst
+        self._start = start
+        self._stop = stop
+
+
+ListView([0, 1, 2, 3, 4], 1, 3)
+
+
+# __len__ переопределяем len
+class ListView:
+    def __init__(self, lst, start, stop):
+        self._lst = lst
+        self._start = start
+        self._stop = stop
+
+    def __len__(self):
+        return self._stop - self._start
+
+
+len(ListView([0, 1, 2, 3, 4], 1, 3))
+
+
+# __iter__ переопределяем iter
+class ListView:
+    def __init__(self, lst, start, stop):
+        self._lst = lst
+        self._start = start
+        self._stop = stop
+
+    def __len__(self):
+        return self._stop - self._start
+
+    def __iter__(self):
+        for i in range(self._start, self._stop):
+            yield self._lst[i]
+
+
+list(ListView([0, 1, 2, 3, 4], 1, 3))
+itr = iter(ListView([0, 1, 2, 3, 4], 1, 3))
+next(itr)
+
+
+# __getitem__ переопределяем getitem
+class ListView:
+    def __init__(self, lst, start, stop):
+        self._lst = lst
+        self._start = start
+        self._stop = stop
+
+    def __len__(self):
+        return self._stop - self._start
+
+    def __getitem__(self, idx):
+        if self._start + idx < self._stop:
+            return self._lst[self._start + idx]
+        else:
+            raise IndexError(idx)
+
+
+ListView([0, 1, 2, 3, 4], 1, 3)[1]
+list(ListView([0, 1, 2, 3, 4], 1, 3))
+
+
+# __setitem__ переопределяем setitem
+class ListView:
+    def __init__(self, lst, start, stop):
+        self._lst = lst
+        self._start = start
+        self._stop = stop
+
+    def __len__(self):
+        return self._stop - self._start
+
+    def __getitem__(self, idx):
+        if self._start + idx < self._stop:
+            return self._lst[self._start + idx]
+        else:
+            raise IndexError(idx)
+
+    def __setitem__(self, idx, value):
+        if self._start + idx < self._stop:
+            self._lst[self._start + idx] = value
+        else:
+            raise IndexError(idx)
+
+
+lst = [0, 1, 2, 3, 4]
+view = ListView(lst, 1, 3)
+list(view)
+view[1] = 7
+list(view)
+
+
+# __add__ переопределяем add
+class ViewOffset:
+    def __init__(self, value):
+        self.value = value
+
+
+class ListView:
+    def __init__(self, lst, start, stop):
+        self._lst = lst
+        self._start = start
+        self._stop = stop
+
+    def __len__(self):
+        return self._stop - self._start
+
+    def __getitem__(self, idx):
+        if self._start + idx < self._stop:
+            return self._lst[self._start + idx]
+        else:
+            raise IndexError(idx)
+
+    def __add__(self, offset):
+        if self._stop + offset.value > len(self._lst):
+            raise ValueError(offset)
+
+        return type(self)(self._lst, self._start + offset.value, self._stop + offset.value)
+
+
+lst = [0, 1, 2, 3, 4, 5]
+v = ListView(lst, 1, 3)
+list(v)
+list(v + ViewOffset(2))
+list(ViewOffset(2) + v)
+
+# ...
+
 
 # Декоратры: @property - добавление и "name".setter - измененеие
 class Circle:
