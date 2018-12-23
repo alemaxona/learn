@@ -1,5 +1,21 @@
 __author__ = 'alemaxona'
 
+
+def usr_path(path):
+    file = '/Users/alemaxona/Documents/Projects/venv/lern12flask/' + path
+    try:
+        f = open(file)
+        f.close()
+        print('Yes')
+        return 'Yes'
+    except FileNotFoundError:
+        print('No')
+        return 'No'
+
+
+usr_path('test/ttt')
+
+
 # Символ "r" - отключает экранирование, иначе python увидел бы: \f
 # Экранировать \ можно так - \\
 path = 'C\\users'
