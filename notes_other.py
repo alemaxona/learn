@@ -328,6 +328,26 @@ for item in tuple1:
 print(new_tuple)
 # (1, 2)
 
+
+# ПОВТОРЯЕМОСТЬ ПРИ РАНДОМЕ!
+
+import random
+
+random.seed(1)  # Сохраняет значения получаемые ниже
+print(random.randint(1, 20))
+print(random.randint(1, 20))
+print(random.randint(1, 20))
+# Сколько раз не волнились бы эти 4 строчки, результат будет один и тотже!
+# Выполнение 1:
+# 4
+# 10
+# 1
+# Выполнение 2:
+# 4
+# 10
+# 1
+
+
 #
 list1 = [1, 2]
 list2 = [7, 8]

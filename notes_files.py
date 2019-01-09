@@ -1,6 +1,60 @@
 __author__ = 'alemaxona'
 
 
+print(__file__)  # Файл, который мы исполняем, то есть текущий!
+# /Users/alemaxona/Documents/Projects/lern/notes_files.py
+
+
+# Менеджер контекста
+# Используется для того, чтобы выполнить код до и после.
+# Нужен для того, чтобы, например сначала открыть файл, потом закрыть, или
+# сделать предварительную авторизацию, а потом logout...
+# Может быть классом или генератором
+
+class File:
+    def __init__(self, file, mode):
+        print('__init__')
+        self.file = file
+        self.mode = mode
+
+    def __enter__(self):
+        print('Open file')
+        self.open_file = open(self.file, self.mode)
+        return self.open_file
+
+    def __exit__(self, *args):
+        print('Close file')
+        self.open_file.close
+
+
+with File('file', 'w') as f:  # В f попадет return из __enter__!
+    f.write('some text')
+# На этой строке файл закроется! __Exit__ здесь всегда выполнится, даже если будет Exception.
+# __init__
+# Open file
+# Close file
+
+# Код выше можно заменить следующим кодом (более лаконичным):
+
+from contextlib import contextmanager
+
+
+@contextmanager
+def do_work(file):
+    user_file = open(file)
+    yield user_file
+    user_file.close()
+
+
+with do_work('file') as f:
+    print(f)
+
+# some work before, __enter__
+# 14
+# some work after, __exit__
+
+
+#
 def usr_path(path):
     file = '/Users/alemaxona/Documents/Projects/venv/lern12flask/' + path
     try:
