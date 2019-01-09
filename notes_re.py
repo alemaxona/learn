@@ -32,3 +32,26 @@ print(name)
 # is name: True
 # is name: False
 # ['Maxim']
+
+
+#
+import re
+import requests
+
+
+def get_from_site(site: str):
+    r = requests.get(site)
+    return r.content
+
+
+def parsing_site(site: str):
+    pattern = r'(https://habr.com/[^\\].+?")'
+    pars = re.findall(pattern, site)
+    return pars
+
+
+get_content = str(get_from_site('https://habrahabr.ru/'))
+
+go_pars = parsing_site(get_content)
+for i in go_pars:
+    print(i)
