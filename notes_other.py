@@ -373,3 +373,29 @@ for k, v in s.items():  # ==
 # None 3
 
 # s.pop('s')  # Удаляет и ключ и значение
+
+
+# Аннотация типов(Явное указание типа):
+# https://habr.com/company/lamoda/blog/432656/
+# Если пометить переменную типом int и попытаться присвоить ей None, будет ошибка:
+# В переменных
+price: int = 5
+title: str
+
+
+# В функции
+def user_func(size: str, width: int) -> str:
+    return " " * (max(0, width - len(size)))
+
+
+# В классе
+class Book:
+    title: str
+    author: str
+
+    def __init__(self, title: str, author: str) -> None:
+        self.title = title
+        self.author = author
+
+
+b: Book = Book(title='Fahrenheit 451', author='Bradbury')
