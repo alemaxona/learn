@@ -1,0 +1,11 @@
+# For mac
+
+# virtualenv
+virtualenv NewProject  # Сооздание виртуальной среды
+source activate  # Активирование виртуальной среды
+deactivate  # Деактивирование виртуальной среды
+
+# pip
+pip install -r requirements.txt  # Установка пакетов, которые указаны в файле
+pip freeze  # Список установленных пакетов
+pip freeze > requirements.txt  # Записать имена пакетов в файл

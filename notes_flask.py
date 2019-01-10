@@ -38,7 +38,7 @@ def home():
     return 'hello world!'  # 'Hello world' - В данном случае - это View
 
 
-@app.route('/test')
+@app.route('/test/')  # Обязательно /test/ не /test
 def home2():
     return 'hello User!'
 
@@ -57,3 +57,42 @@ def usr_sum(num1, num2):
 # Model(логины, пароли, отчеты...) тут нет, мы не храним данные, текст - это больше отображение (View)
 if __name__ == '__main__':
     app.run()
+
+
+# Конфигурация Flask
+# Настройки завистят от окружения!!!
+
+from flask import Flask
+
+app = Flask(__name__)
+# Очень внимательно включать на боевом сервере!
+app.config['DEBUG'] = True  # Перезапускает сервер при изминении в файле, а также включает дебагер
+# app.debug = True
+app.config['SECRET_KEY'] = 'Some key'  # Секретный ключ!
+# Секретный ключ необходимо прятать от чужих глаз! Пример одного из способов:
+# В терминале:
+# key = 'My best key' python notes_flask.py  # Создание переменной на момент запсука python
+# В сценарии:
+# import os
+# app.config['SECRET_KEY'] = os.environ['key']  # os.environ - Переменные окружения
+
+
+# Другая запись конфигурации:
+app.config.update(
+     DEBUG=True,
+     SECRTE_KEY='Some key'  # *kwargs
+)
+
+
+# Запись конфигурации через объект:
+# Файл - config.py:
+class Configur(object):
+    DEBUG = True
+
+
+# Файл - app.py
+from flask import Flask
+from config import Configur
+
+app = Flask(__name__)
+app.config.from_object(Configur)  # from_object Другие доступные методы, например from_pyfile, можно посмотреть -  dir(app.config)
