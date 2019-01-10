@@ -76,6 +76,10 @@ app.config['SECRET_KEY'] = 'Some key'  # Секретный ключ!
 # import os
 # app.config['SECRET_KEY'] = os.environ['key']  # os.environ - Переменные окружения
 
+# или
+# import os
+# a = os.urandom(24)  # Генерит что-то типа: b'x\xc7{YV-l\x84\xfa@h\xfc\xf7\x81\xad\xf97z\xf8I\xa7\xa3+\xfc'
+
 
 # Другая запись конфигурации:
 app.config.update(
