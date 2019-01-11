@@ -100,3 +100,21 @@ from config import Configur
 
 app = Flask(__name__)
 app.config.from_object(Configur)  # from_object Другие доступные методы, например from_pyfile, можно посмотреть -  dir(app.config)
+
+
+# Посмотреть данные POST запроса
+from flask import Flask, request
+from flask_wtf import FlaskForm
+from wtforms import IntegerField, validators
+# ...
+class ContactForm(FlaskForm):
+    number = IntegerField(label='number', validators=[
+        validators.DataRequired()
+    ])
+
+
+@app.route('/', methods = ['POST'])
+def show_data():
+    print('form number is', request.form['number'], 'type', type(request.form['number']))
+    return 'form number is', request.form['number'], 'type', type(request.form['number']
+# ...
