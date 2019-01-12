@@ -11,6 +11,8 @@ print(__file__)  # Файл, который мы исполняем, то ест
 # сделать предварительную авторизацию, а потом logout...
 # Может быть классом или генератором
 
+# В менеджере контекста всегда должны быть определены специальные методы __enter__ и __exit__!
+
 class File:
     def __init__(self, file, mode):
         print('__init__')
@@ -52,6 +54,71 @@ with do_work('file') as f:
 # some work before, __enter__
 # 14
 # some work after, __exit__
+
+
+# Примеры из упражнений
+# 1
+class Lock:
+    def __init__(self):
+        self.lock = False
+
+    def __enter__(self):
+        self.lock = True
+        return  self.lock
+
+    def __exit__(self, *args):
+        self.lock = False
+        print('Exit, Again False.')
+
+
+with Lock() as f:
+    print(f)
+
+
+# 2
+class Exten:
+    def __init__(self, value1, value2):
+        self.value1 = value1
+        self.value2 = value2
+
+    def __enter__(self):
+        try:
+            rez = self.value1 / self. value2
+            return rez
+        except Exception as f:
+            return 'Exception message:', f
+    
+    def __exit__ (self, *args):
+        print('Continues execution')
+
+with Exten(4, 2) as f:
+    print(f)
+with Exten(1, 'str') as f:
+    print(f)
+with Exten(1, '0') as f:
+    print(f)
+
+
+# 3
+from datetime import datetime
+
+class Code_time:
+    def __init__(self):
+        pass
+
+    def __enter__(self):
+        a = datetime.now()
+        print((2 ** 2048) ** 1024)
+        b = datetime.now()
+        rez = b.second - a.second
+        return rez
+
+    def __exit__(self, *args):
+        pass
+
+
+with Code_time() as f:
+    print('Run time is {} seconds.'.format(f))
 
 
 #
