@@ -10,6 +10,7 @@ deactivate  # Деактивирование виртуальной среды
 pip install -r requirements.txt  # Установка пакетов, которые указаны в файле
 pip freeze  # Список установленных пакетов
 pip freeze > requirements.txt  # Записать имена пакетов в файл
+pip freeze | xargs pip uninstall -y  # Удалить все модули
 
 # ide
 vscode
