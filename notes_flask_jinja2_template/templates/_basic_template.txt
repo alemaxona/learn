@@ -1,0 +1,10 @@
+   My company - {{ my_name('MAXXXIMUM') }}
+
+{% block main %}
+{% endblock %}
+
+    Report.
+
+{% block footer %}
+    Report finished.
+{% endblock %}
