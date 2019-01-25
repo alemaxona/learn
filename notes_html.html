@@ -1,0 +1,130 @@
+<!--https://www.w3schools.com/-->
+
+<> <!--Тег-->
+
+<meta...> <!--meta - Это трабут тега-->
+
+<!--Если тег одиночный, то писать его можно либо так:-->
+<meta charset="UTF-8"/> 
+<!--либо так:-->
+<meta charset="UTF-8">
+
+<!--Comment -->  <!--Комментарий в html-->
+
+<br>  <!--Перенос строки-->
+
+<!--Первая строчка начала html страницы-->
+<!--Она также указывает на то, что это версия 5!-->
+<!DOCTYPE html>
+
+<!-- Далее идут:-->
+<html>
+<head>  <!--В этом теге лежит в основном мета информация-->
+<meta charset="UTF-8">  <!--UTF-8 по умолчанию в html5-->
+<title>Title</title>
+</head>
+
+<body>
+Content
+</body>
+
+</html>
+
+
+<!--Формы-->
+<form action="/action.php" method="POST">
+    Login:<br>  
+    <input type="text" name="login" value="Login">  <!--тame - имя поля, как в postman! value меняется и необязательно!-->
+    <br><br>
+    Password:<br>
+    <input type="password" name="password" value="Passworf">  <!--Type password - позволяет скрыть пароль при наборе-->
+    <br>
+    <input type="submit" value="Submit">  <!--Кнопка. Отправит по адресу /action.php методом POST-->
+</form>
+
+<!--Форма select-->
+<form action="/action.php">
+    <select name="cars">  <!--Или select multiple name="cars"> Для выбора множества значений-->
+        <option value="Volvo">Volvo</option>
+        <option value="BMW">BMW</option>
+        <option value="Audi">Audi</option>
+    </select>
+    <br><br>
+    <input type="submit">
+</form>
+
+<!--Форма типа Тест:-->
+<form action="/action.php">
+    <input type="radio" name="gender" value="Male" checked>Male<br>  <!--checked - отмечается выбор по умолчанию-->
+    <input type="radio" name="gender" value="Female">Female<br>  
+    <input type="radio" name="gender" value="Other">Other
+    <br><br>
+    <input type="submit">
+</form>
+<!--или type="checkbox" - для выбора множества значений-->
+<form action="/action.php">
+    <input type="checkbox" name="vehicle1" value="Bike">i have bike
+    <br>
+    <input type="checkbox" name="vehicle2" value="Car">i have car<br> 
+    <br>
+    <input type="submit">
+</form>
+
+<!--Форма текста (Для ввода большога текста)-->
+<form action="/action.php">
+    <textarea name="message" rows="10" cols="30">Enter your text</textarea>
+    <br>
+    <input type="submit">
+</form>
+
+<!--Просто кнопка-->
+<button type="button" onclick="alert('Hello')">Click me</button>
+<br>
+
+<!--Ссылки-->
+Ссылки:
+<br>
+<a href="http://google.ru">Google</a>
+<br>
+<a href="images/xxx.jpg">Посмотрите на мою фотографию!</a>
+<br>
+<a href="tip.html">Как сделать такое же фото?</a> 
+<br>
+
+
+<!--Картинки-->
+<img src="image.jpg">
+<br>
+<img src="/images/image.jpg">
+<br>
+<img src="image.jpg" alt="World view" style="width:304px;heigh=228px">
+<!--alt - Если картинка не загрузится, - останется описание
+У картинок .gif и .png нет фона (он прозрачный)
+У .jpg всегда есть фон-->
+
+
+<!--Списки-->
+<ul>  <!--Либо <ol> либо <ul type="1">, обозгачение будет цифровое, а не точками. Есть и другие type.-->
+    <li>First</li>
+    <li>Second</li>
+</ul>  <!--Либо </ol>-->
+<!--Чаще используется - <ul>-->
+
+
+<!--Блоковые элементы:-->
+
+<div>  <!--Самый главный блоковый элемент. div - division - разделение
+В <div> может лежать все что угодно, кроме текста-->
+
+<!--Параграф-->
+<p>Text</p>
+<p>Text2</p>  <!--Уже с новой строки! Занимет все горизонтальное пространство!
+В <p> может лежать только текст-->
+<p> My text<br>
+great</p>
+
+<!--Заголовки-->
+<h1>Заголовок</h1>  <!--Самый большой по размеру. Рекомендации - 1 заголовок на страницу, все остальные сколько угодно-->
+<h2>Заголовок</h2>
+<!--...-->
+<h6>Заголовок</h6>  <!--Самый маленький по размеру-->
