@@ -1,0 +1,92 @@
+/* Comment */ Комментарий в CSS
+
+Концепция сетки - необходимо использовать
+
+Не все свойства работают во всех браузерах!
+
+Responsive design - верстка под мобильные и десктопные версии.
+Приминение разного разрешения экрана
+Сайт будет подстраиваться под разные экраны
+Допустим было 3 картинки по горизонтали
+То на маленьком разрешении они будут уже выстраиваться по вертикали
+
+@media screen and(max-width: 640px){  /* Допустим при ширине экрана 640 мы поняли, что уже плохо */
+    .offer {
+        float: none;
+        width: 96%;
+    }
+}
+
+
+Указание в html на файл css:
+templates\
+    inde.html
+    style.css
+
+<head>
+    <title>CCS in file</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+Можно писать сразху в файле .html:
+<html>
+    <head>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+    </style>
+    </head>
+</html>
+
+
+ Очень популярное свойсто позиционирования - flex! При растягивании браузера
+ контент будет подгоняться!  https://flexboxfroggy.com/#ru
+ <style>
+        body {
+            display: flex
+        }
+ </style>
+
+Стили тегов
+h1 {
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-family: Verdana;
+    font-size: 20px;
+}
+
+Переиспользование
+body {
+    background-color: lightblue; /* Правила в СSS (rule) */
+}
+
+body {
+    background-color: lightgray; /* Перекроет верхний! */
+}
+
+Если мы хотим чтобы разные div-ы отображались по разному
+ Селектор class. Наиболее удобный для переиспользования!
+div {
+    background-color: green
+}
+
+.colored {
+    background-color: black
+}
+
+<div class="colored">Hi!</div>
+
+/* Селектор ID */
+div {
+    background-color: green
+}
+
+#colored {
+    background-color: black
+}
+
+<div id="colored">Hi!</div>

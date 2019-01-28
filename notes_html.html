@@ -1,6 +1,13 @@
 <!--https://www.w3schools.com/-->
 
 <> <!--Тег-->
+<!--Есть еще и другие селекторы:
+Теги
+Классы
+ID
+Селекторы атрибутов
+Псевдо селекторы 
+-->
 
 <meta...> <!--meta - Это трабут тега-->
 
@@ -17,15 +24,34 @@
 <!--Она также указывает на то, что это версия 5!-->
 <!DOCTYPE html>
 
-<!-- Далее идут:-->
+<!--Далее идут:-->
 <html>
 <head>  <!--В этом теге лежит в основном мета информация-->
 <meta charset="UTF-8">  <!--UTF-8 по умолчанию в html5-->
-<title>Title</title>
+    <title>Title</title>
 </head>
+<!--CSS-->
+
+<style>
+body {
+    background-color: lightgray;
+}
+.colored {
+    background-color: brown
+}
+#colltext {
+    text-align: center
+}
+div {
+    background-color: rgb(15, 226, 191)
+}
+</style>
 
 <body>
-Content
+    <div class="colored">Class</div>
+    <div>Not class and id</div>
+    <div id="colltext">id</div>
+    Content
 </body>
 
 </html>
