@@ -1,5 +1,5 @@
 // IF
-
+// Условие всегда в фигурных скобах!
 // Можно писать в одну строку, если тело состоит из одной операции:
 var i = 1
 if (i == 1) alert(i)
@@ -43,11 +43,12 @@ if (age < 3) {
 }
 // --------------
 
-var company = prompt('Какая компания создала JavaScript?', '');
+// Условие IF в одну строку
+var x = 1 === 1 ? console.log('true') : 'false'
 
+var company = prompt('Какая компания создала JavaScript?', '');
 (company == 'Netscape') ?
    alert('Да, верно') : alert('Неправильно');
-
 
 // Или - ||
 alert( true || true ); // true
@@ -95,7 +96,8 @@ if (1 && 0) { // вычислится как true && false
 // НЕ - !
 alert(!true)  // false
 
-// Преобразование типов
+// Преобразование типов. В JS особо не принято. Есть строка - работай со строкой.
+// Типизация слабая!
 +'1' //  FUCKING FUCK
 // 1
 alert(String(null) == 'null')  // String с большой буквы
@@ -106,7 +108,13 @@ alert(Number('123'))  // Number с большой буквы
 // 123
 var a = +"123"; // 123
 // ==
-var a = Number("123"); //123
+var a = "123"
+Number(a); //123
+
+var a = 12 
+Boolean(a);  //12
+// ==
+!!a
 
 // Циклы
 var a = 1;
@@ -124,7 +132,7 @@ while (true) {
 while (i) { // при i, равном 0, значение в скобках будет false и цикл остановится.
 }
 
-// do while
+// do while // В любом случае выполнится 1 раз!
 var i = 0;
 do {
     alert(i);
@@ -148,6 +156,14 @@ for (i = 0; i < 3; i++) {
 // В цикле также можно определить переменную:
 for (var i = 0; i < 3; i++) {
   alert(i); // 0, 1, 2
+}
+
+// Итерация по списку
+
+var list = ['a', 'b', 3, 4, 5]
+for ( var i in list) {
+  console.log(list[i]) // Выведет значения листа
+  console.log(i)  // Выведет индексы значений листа // В Python вывел бы значения!
 }
 
 // Пропуск частей:
@@ -200,3 +216,30 @@ for (var i = 0; i < 10; i++) {
     alert( i );
   }
 }
+
+// swith - Это некое подобие IF, сравнение констант 
+//Здесь обязателен break или return!
+var value = 12
+switch (value) {
+  case 12:
+    console.log('12');
+    break;
+  case 1:
+    console.log('< 12');
+    break;
+  default:
+    console.log('> 12')
+    break;
+}
+
+
+// Функции
+function test (a, b) {
+  return a + b
+}
+
+test(1, 2)  
+// Если не ввести аргументы, - то вернется NaN
+// test() == test(undefined, undefined)
+// Если ввести больше значений чем нужно, то JS возьмет только те, которые определены.
+// *args, *kwargs тут нет! В другом(современном) JS - есть!

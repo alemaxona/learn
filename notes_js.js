@@ -70,6 +70,8 @@ console.log(typeof(list))
 list.push('str')  // Добавление в список
 console.log(list)
 // 4) [1, 2, 3, "str"]
+console.log(list.length)  // Длина массива
+
 
 /*
 Скрипты вставляются на страницу как текст в теге <script>, либо как внешний файл через <script src="путь"></script>
