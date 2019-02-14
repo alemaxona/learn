@@ -237,9 +237,67 @@ switch (value) {
 function test (a, b) {
   return a + b
 }
-
 test(1, 2)  
 // Если не ввести аргументы, - то вернется NaN
 // test() == test(undefined, undefined)
 // Если ввести больше значений чем нужно, то JS возьмет только те, которые определены.
 // *args, *kwargs тут нет! В другом(современном) JS - есть!
+
+// ==
+// Объвление в переменной
+var myFunc = function test (a, b) {
+  return a + b
+}
+console.log(myFunc(1, 2)) 
+// Если передать без параметров, то выведется имходный код функциии!
+console.log(myFunc)
+// ƒ test (a, b) {
+//   return a + b
+// } 
+
+typeof(myFunc)
+// "function"  - Тип данных
+
+
+// Объекты в JS
+// Прототипы / this
+var myClass = function (title) { // title - Тут что-то типа значения  конструктора
+  this.title = title;  // Что-то типа self в Python
+  var privateValue = 'Secret';
+
+  this.tellTitle = function () {
+    console.log(this.title);
+    console.log(this);
+  };
+  function privateFunction() {
+    console.log(privateValue);  // Замыкание - использование функцией чужих аргументов
+    console.log('This is: ', this);
+  }
+  privateFunction();
+
+  this.runPrivate = function() {  // Оберктка
+    privateFunction();
+  }
+
+  this.runPrivateWithCall = function() {
+    privateFunction.call(this);
+    privateFunction.apply(this, []);
+  }
+}
+
+console.log(typeof(myClass))
+// "function"  Не класс!
+// Создание объекта из "Класса"
+// new - параметр обязателен! 
+var o = new myClass('Some title ')  // new - Инициализация экземпляра ("объекта" / прототипа)
+console.log(typeof(o))
+// "object"
+console.log(o.runPrivateWithCall())
+console.log(myClass.prototype)
+
+
+myClass.prototype.test = function() {
+  console.log('TEST')
+}
+o.test()
+// TEST
