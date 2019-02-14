@@ -48,6 +48,22 @@ st = 'Maxim world'
 print(st[1:1+3])
 # axi
 
+# Изменяем строки
+my_string = 'Python the Best'
+my_string2 = my_string[:6] + '3' + my_string[6:] 
+print(my_string, '\n', my_string2, sep='')
+# Python the Best
+# Python3 the Best
+
+my_string3 = my_string.replace ('Python', 'JS')
+# JS the Best 
+
+time = input()
+time = time.split(':')
+print(time)
+# 19:00:01
+# ['19', '00', '01']
+
 
 # Условие в одну строку:
 def user_func(a=None):
