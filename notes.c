@@ -21,6 +21,13 @@ unsigned char b = 125; // В основном используем для циф
 // signed short int или signed short: от −32767 до +32767
 // unsigned short int или unsigned short: от 0 до +65535
 
+// Константы  // Определяются всегда перед main()
+#define NUMBER 23 // Имя константы принато писать с большой буквы!
+// Данные константы - неизменяемые
+
+// Еще один вид константы
+const char a = 2  // Может быть изменена в зависимости от компилятор!
+
 // Маркеры вывода
 printf ("%d", 10);
 // %d - десятичные цифры(decimal)
@@ -28,15 +35,24 @@ printf ("%d", 10);
 // %i  - десятичные числа (до 2 мирд.)
 // %s - строки (string)
 
+//Функции
 // main - основная/главная
 void main() {  // void - пустота, ничего не возвращает!
     return;
 }
 
 // Если параметров нет, то желательно указывать void
-void main(void) {  // void - пустота, ничего не передаем и не возвращаем!
+void test(void) {  // void - пустота, ничего не передаем и не возвращаем!
     return;
 }
+// Параметры функции (у них тоже должен быть указан тип!)
+unsigned short sum(unsigned char a, unsigned char b) {
+    unsigned short total = 0;
+    total = a + b ;
+    return total;
+}
+// Вызов в main()
+sum(1, 255);
 
 
 #include <stdio.h>
@@ -55,125 +71,7 @@ int main()
 
 
 
-// Homme work
-// Б. Керниган, Д. Ритчи. Язык программирования Си:
-// Дочитать Главу 1
-// Прочитать главу 2 до 2.4 включительно
-// Изучить escape-последовательности в 2.3
-// Изучить <limits.h> и <float.h>
-// Опытным путем выяснить сколько байт в VSC занимают типы:
-//  char, short int, long int, long long, long double
-// (Опционально) Написать программу, выводящую на экран самое большое число из базовых типов.
-// #include <stdio.h>
-// #include <limits.h>
-
-// int main() {
-//     unsigned int i = UINT_MAX;
-
-//     printf("UINT_MAX = %u\n", i);
-//     printf("UINT_MAX + 1 = %u\n", i + 1);
-
-//     return 0;
-// }
-
-#include <stdio.h>
-#include <limits.h>
-
-int main() {
-    
-    char c = CHAR_MAX;
-    short int si = SHRT_MAX;
-    int i = INT_MAX;
-    long int li = LONG_MAX; 
-    long long ll = LLONG_MAX;
-    long double ld = __LDBL_MAX__;
-
-    // char
-    printf("CHAR_MAX = %d\n", c);
-    printf("CHAR_MAX + 1 = %d\n", c + 1);
-
-    // shrot int
-    printf("SHRT_MAX = %hi\n", si);
-    printf("SHRT_MAX + 1 = %hi\n", si + 1);
-
-    // int
-    printf("INT_MAX = %i\n", i);
-    printf("INT_MAX + 1 = %i\n", i + 1);
-
-    // long int
-    printf("LONG_MAX = %ld\n", li);
-    printf("LONG_MAX + 1 = %ld\n", li + 1);
-
-    // long long
-    printf("LLONG_MAX = %lld\n", c);
-    printf("LLONG_MAX + 1 = %lld\n", c + 1);
-
-    // double long
-    printf("LDBL_MAX = %Le\n", c);
-    printf("LDBL_MAX + 1 = %Le\n", c + 1);
-
-    // EOF
-    printf("EOF: %d\n", EOF);
-}
-
-// 1.8. from book
-// #include <stdio.h>
-
-// int main() {
-//     int i;
-//     int tab = 0;
-//     while ((i = getchar()) != EOF) {
-//         if (i == '\t')  // or ' ' or '\n'
-//             tab++;
-//         i++;
-//     }
-//     printf("Tab: %d\n", tab);
-// }
-
-
-// 1.9
-// #include <stdio.h>
-
-// int main() {
- 
-//     int i, j; 
-//     j = 0;
-//     while ((i = getchar()) != EOF) {
-//         if (i == ' ' && j == 0) {
-//             putchar(i);
-//             ++j;
-//         }
-//         if (i == ' ' && j != 0) {
-//             ++j;
-//         }
-//         if (i != ' ') {
-//             putchar(i);
-//             j = 0;
-//         }
-//     } 
-// }
-
-// 1.10
-// #include <stdio.h>
-
-// int main() {
-// 	int i;
-// 	while ((i = getchar()) != EOF) {
-// 		if (i == '\t') {
-// 			putchar('\\');
-// 			putchar('t');
-// 		}
-// 		else if (i == '\b') {
-// 			putchar('\\');
-// 			putchar('b');
-// 		} else if (i == '\\') {
-// 			putchar('\\');
-// 		}
-// 		putchar(i);
-// 	}
-// }
-
-
+// --- Еще рано
 // int a, b;
 // float c;
 // scanf ("%d %d", &a, &b);
