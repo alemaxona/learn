@@ -1,5 +1,3 @@
-//  From book "Brian Kernighan Dennis Ritchie - The C Programming Language"
-
 // Ручное компилирование 
 // Из cmd: gcc myFile.c -o myFile.exe
 
@@ -14,6 +12,14 @@
 // Поэтому char сможет иметь только один знак буква А,
 // так как 65 + 65 > 127!
 // Также невозможно иметь число, например дробное - 5,2, или десятичное - 300!
+// char и signed char  - Почти Один и тот же тип. signed(со знаком)
+// unsigned char - без знака. То есть от 0 до 255.
+char a = 'a'; // В основном используем для символов
+unsigned char b = 125; // В основном используем для цифр
+
+// short int или short: от 32  от −32767 до +32767
+// signed short int или signed short: от −32767 до +32767
+// unsigned short int или unsigned short: от 0 до +65535
 
 // Маркеры вывода
 printf ("%d", 10);
