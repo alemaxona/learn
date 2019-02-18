@@ -70,6 +70,11 @@ int main()
 // То есть мы назвали число 300 словом - MAX
 
 // Разница в ++а и а++ видна только в выраждении!
+// ++i увеличивает значение, а затем возвращает его.
+// i++ возвращает значение, а затем увеличивает его.
+// Это тонкая разница.
+// Для цикла for используйте ++i, так как он немного быстрее. i++ создаст дополнительную копию, которая просто будет выброшена.
+
 int a = 5, b;
 b = -a; // b = -5 
 b = --a; // Выражение!
@@ -137,68 +142,7 @@ printf("%d", *p);
 //??
 // (Опционально) Написать программу, выводящую на экран самое большое число из базовых типов.
 
-
-// #include <stdio.h>
-// #define ARRAY_SIZE 10
-// #define VALUE 10.1
-
-// /* Returns the mean value of the array */
-// float mean(float array[], int size) {
-// 	float total = 0.0;
-// 	for (char i = 0; i < size; i++) {
-// 		total += array[i];
-// 		printf("array[%hhu] = %f and total is %f\n", i, array[i], total);
-// 	}
-// 	if (size != 0)
-// 		return total / size;
-// 	else
-// 		return 0.0;
-// }
-
-// int main(void) {
-// 	float array[ARRAY_SIZE];
-// 	float avg;
-// 	size_t i;
-// 	for (i = 0; i < ARRAY_SIZE; i++)
-// 		array[i] = VALUE;
-
-// 	avg = mean(array, ARRAY_SIZE);
-// 	printf("mean is %f\n", avg);
-// 	if (avg == array[0]) {
-// 		printf("array[0] is the mean\n");
-// 	}
-// 	else {
-// 		printf("array[0] is not the mean\n");
-// 	}
-// 	getchar();
-// 	return 0;
-// }
-
-
-
-
-// // Также сделать черз формулу
-// #include <stdio.h>
-// #include <stdbool.h>
-
-// bool XOR(bool a, bool b) {
-// 	bool c = a ^ b;
-// 	return c;
-
-// }
-
-// void main() {
-
-// 	printf("XOR(true, true): %i\n", XOR(true, true));
-// 	printf("XOR(true, false): %i\n", XOR(true, false));
-// 	printf("XOR(false, true): %i\n", XOR(false, true));
-// 	printf("XOR(false, false): %i\n", XOR(false, false));
-
-// 	getchar();
-// 	return;
-// }
-
-
+//test
 #include <stdio.h>
 
 void main() {
