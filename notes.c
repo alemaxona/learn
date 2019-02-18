@@ -2,7 +2,7 @@
 // Из cmd: gcc myFile.c -o myFile.exe
 
 # include <stdio.h> // По сути подключения файла с функциями 
-// include (подключить) - деректива препроцессора / 
+// #include (подключить) - деректива препроцессора / 
  // <stdio.h> (Заголовочный файл) - standart input output . headers
  // h (headers - заголовки) 
 
@@ -26,7 +26,7 @@ unsigned char b = 125; // В основном используем для циф
 // Данные константы - неизменяемые
 
 // Еще один вид константы
-const char a = 2  // Может быть изменена в зависимости от компилятор!
+const char a = 2  // Иногда может быть изменена в зависимости от компилятора!
 
 // Спецификаторы вывода
 printf ("%d", 10);
@@ -34,6 +34,7 @@ printf ("%d", 10);
 // %c - символьные знаки(char)
 // %i  - десятичные числа (до 2 мирд.)
 // %s - строки (string)
+// ...
 
 //Функции
 // main - основная/главная
@@ -72,11 +73,10 @@ int main()
 // Разница в ++а и а++ видна только в выраждении!
 int a = 5, b;
 b = -a; // b = -5 
-b = --a; // Выражение!
+b = --a; // Выражение! // b = 4, a = 4    
 // !=
-int a = 5, b;
-b = -a;
-b = a--;
+b = -a; // -4
+b = a--; // b = 3, a = 4
 
 int a = 5, b;
 b = -a;
@@ -87,19 +87,20 @@ b = -a;
 --a; 
 
 // В С нет логического типа (типа True в Python)
-#define false 1
+#define false 0
 #define true 1
 
-//Или из <stdbool.h>:
+//Или использовать из <stdbool.h>:
 bool a = 1
 
 //
 int a= 10
 int b = (5 > 3) && (a = 15) // b = 1
 
+
 // Указатели. Храянат адрес переменной в памяти (https://learnc.info/c/pointers.html)
 int A = 100;
-int *p;
+int *p; // int *p = &A;
 //Получаем адрес переменной A
 p = &A;
 //Выводим адрес переменной A
@@ -137,77 +138,62 @@ printf("%d", *p);
 //??
 // (Опционально) Написать программу, выводящую на экран самое большое число из базовых типов.
 
-
-// #include <stdio.h>
-// #define ARRAY_SIZE 10
-// #define VALUE 10.1
-
-// /* Returns the mean value of the array */
-// float mean(float array[], int size) {
-// 	float total = 0.0;
-// 	for (char i = 0; i < size; i++) {
-// 		total += array[i];
-// 		printf("array[%hhu] = %f and total is %f\n", i, array[i], total);
-// 	}
-// 	if (size != 0)
-// 		return total / size;
-// 	else
-// 		return 0.0;
-// }
-
-// int main(void) {
-// 	float array[ARRAY_SIZE];
-// 	float avg;
-// 	size_t i;
-// 	for (i = 0; i < ARRAY_SIZE; i++)
-// 		array[i] = VALUE;
-
-// 	avg = mean(array, ARRAY_SIZE);
-// 	printf("mean is %f\n", avg);
-// 	if (avg == array[0]) {
-// 		printf("array[0] is the mean\n");
-// 	}
-// 	else {
-// 		printf("array[0] is not the mean\n");
-// 	}
-// 	getchar();
-// 	return 0;
-// }
-
-
-
-
-// // Также сделать черз формулу
-// #include <stdio.h>
-// #include <stdbool.h>
-
-// bool XOR(bool a, bool b) {
-// 	bool c = a ^ b;
-// 	return c;
-
-// }
-
-// void main() {
-
-// 	printf("XOR(true, true): %i\n", XOR(true, true));
-// 	printf("XOR(true, false): %i\n", XOR(true, false));
-// 	printf("XOR(false, true): %i\n", XOR(false, true));
-// 	printf("XOR(false, false): %i\n", XOR(false, false));
-
-// 	getchar();
-// 	return;
-// }
-
-
+// hwDay3
+//1
 #include <stdio.h>
+#include <stdbool.h>
+
+bool XOR(bool a, bool b) {
+	bool c = a && !b || !a && b;
+    // 	bool c = a ^ b;
+	return c;
+
+}
 
 void main() {
-    
-    float i = 10.1;
-    float arr [3] = {0.3, 0.2, 0.7};
-    for(int a = 0; a < 3; a++) {
-        i += arr[a];
-    }
-    printf("%f\n", i);
-    return;
+
+	printf("XOR(true, true): %i\n", XOR(true, true));  //0 
+	printf("XOR(true, false): %i\n", XOR(true, false));  //1
+	printf("XOR(false, true): %i\n", XOR(false, true));  //1
+	printf("XOR(false, false): %i\n", XOR(false, false));  //0
+
+	getchar();
+	return;
+}
+
+// 2
+#include <stdio.h>
+#define ARRAY_SIZE 10
+#define VALUE 10.1
+
+/* Returns the mean value of the array */
+float mean(float array[], int size) {
+	double total = 0.0;  //float -> double
+	for (char i = 0; i < size; i++) {
+		total += array[i];
+		printf("array[%hhu] = %f and total is %f\n", i, array[i], total);
+	}
+	if (size != 0)
+		return total / size;
+	else
+		return 0.0;
+}
+
+int main(void) {
+	float array[ARRAY_SIZE];
+	float avg;
+	size_t i;
+	for (i = 0; i < ARRAY_SIZE; i++)
+		array[i] = VALUE;
+
+	avg = mean(array, ARRAY_SIZE);
+	printf("mean is %f\n", avg);
+	if (avg == array[0]) {
+		printf("array[0] is the mean\n");
+	}
+	else {
+		printf("array[0] is not the mean\n");
+	}
+	getchar();
+	return 0;
 }
