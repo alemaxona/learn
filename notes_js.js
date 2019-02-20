@@ -1,3 +1,5 @@
+//Заметки по ES5 JS!
+
 // Типы данных (всего - 6)
 // number - 4, 4.32 Нет разделения на дробное и целое!
 // Строки как в Python
@@ -27,31 +29,36 @@ console.log(s)
 s = null
 console.log(s)
 // null
+// Результат typeof(null) == "object" - true - это официально признанная ошибка в языке, 
+// которая сохраняется для совместимости. На самом деле null – это не объект, а отдельный тип данных.
+
 
 alert( 1 / 0 ); // Infinity, бесконечность.
 alert( "нечисло" * 2 ); // // Nan - не число!, ошибка
 
 s = 'My var'
-
 console.log(s == myVar)  // Вывод на экран
 // true
 console.log(s === myVar)
 // true
 console.log(typeof(s))  //console.log(typeof s)
 // string
-
 console.error(s)  // Вывод ошибок
 // My var  // Error
 
-// Объекты
+// Объекты (Почти подобие словарей Python)
 var o = {}
 console.log(o)
 // {}
 console.log(typeof(o))
 // object
 
-// Результат typeof null == "object" – это официально признанная ошибка в языке, 
-// которая сохраняется для совместимости. На самом деле null – это не объект, а отдельный тип данных.
+var o = {1: 'a', 2: 'b', 3: 'c'}
+console.log(o[1])
+// a
+console.log(Object.keys(o))
+// [ '1', '2', '3' ]
+
 
 // Объект в JS - это как dict в Python!
 // Наследования нет, классов нет!
@@ -70,7 +77,94 @@ console.log(typeof(list))
 list.push('str')  // Добавление в список
 console.log(list)
 // 4) [1, 2, 3, "str"]
-console.log(list.length)  // Длина массива
+console.log(list.length)  // Длина массива (У словарей(объектов в JS) такого метода нет)
+
+
+// Логическая арифметика
+// Или - ||
+alert( true || true ); // true
+alert( false || true ); // true
+alert( true || false ); // true
+alert( false || false ); // false
+
+// оператор ИЛИ вычисляет ровно столько значений, сколько необходимо – до первого true
+var x;
+true || (x = 1);
+alert(x); // undefined, x не присвоен
+// А в примере ниже первый аргумент – false, так что ИЛИ попытается вычислить второй, запустив тем самым присваивание:
+
+var x;
+false || (x = 1);
+alert(x); // 1
+
+
+var hour = 9, isWeekend = true;
+if (hour < 10 || hour > 18 || isWeekend) {
+    alert('Upssss.')
+}
+
+// И - &&
+// Итак, оператор && вычисляет операнды слева направо до первого «ложного» и возвращает его, а если все истинные – то последнее значение.
+alert( true && true ); // true
+alert( false && true ); // false
+alert( true && false ); // false
+alert( false && false ); // false
+
+var hour = 12,
+  minute = 30;
+if (hour == 12 && minute == 30) {
+  alert( 'Время 12:30' );
+}
+
+if (1 && 0) { // вычислится как true && false
+    alert( 'не сработает, т.к. условие ложно' );
+  }
+
+// Приоритет у && больше, чем у ||
+// Приоритет оператора И && больше, чем ИЛИ ||, так что он выполняется раньше.
+ alert( 5 || 1 && 0 ); // 5
+
+ // НЕ - !
+alert(!true)  // false
+
+
+// Преобразование типов. В JS особо не принято. Есть строка - работай со строкой.
+// Типизация слабая!
++'1' //  FUCKING FUCK
+// 1
+alert(String(null) == 'null')  // String с большой буквы
+// true
+alert( "123" + undefined );
+// "123undefined"
+alert(Number('123'))  // Number с большой буквы
+// 123
+var a = +"123"; // 123
+// ==
+var a = "123"
+Number(a); //123
+
+var a = 12 
+Boolean(a);  //12
+// ==
+!!a
+
+Boolean(0)
+// false
+!1
+// false
+!!1
+// true
+!true
+// false
+
+
+// Еще как вариант
+parseInt('1')
+// 1
+parseInt('1v')
+// 1
+parseFloat('14.2sdf')
+// 14.2
 
 
 /*
@@ -112,7 +206,7 @@ i++;      // более короткая запись для i = i + 1.
 alert(i); 
 // 3
 
- var i = 2;
+var i = 2;
 i--;      // более короткая запись для i = i - 1.
 alert(i); 
 // 1
@@ -149,6 +243,16 @@ alert( i ); // 2
 alert( 2 * ++i ); // 6
 alert( i ); // 3
 // ---------------------------
+
+// Разница между i++ и ++i является значением выражения.
+// Значение i++ является значением i до приращения. Значение ++i является значением i после приращения.
+// https://learn.javascript.ru/while-for  В самом низу
+var i = 42;
+alert(i++); // shows 42
+alert(i); // shows 43
+i = 42;
+alert(++i); // shows 43
+alert(i); // shows 43
 
 var n = 2;
 n += 5; // теперь n=7 (работает как n = n + 5). Так можно сделать для операторов +,-,*,/,%

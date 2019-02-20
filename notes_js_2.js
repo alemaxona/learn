@@ -1,13 +1,3 @@
-// Разница между i++ и ++i является значением выражения.
-// Значение i++ является значением i до приращения. Значение ++i является значением i после приращения.
-// https://learn.javascript.ru/while-for  В самом низу
-var i = 42;
-alert(i++); // shows 42
-alert(i); // shows 43
-i = 42;
-alert(++i); // shows 43
-alert(i); // shows 43
-
 // IF
 // Условие всегда в фигурных скобах!
 // Можно писать в одну строку, если тело состоит из одной операции:
@@ -60,71 +50,6 @@ var company = prompt('Какая компания создала JavaScript?', '
 (company == 'Netscape') ?
    alert('Да, верно') : alert('Неправильно');
 
-// Или - ||
-alert( true || true ); // true
-alert( false || true ); // true
-alert( true || false ); // true
-alert( false || false ); // false
-
-// оператор ИЛИ вычисляет ровно столько значений, сколько необходимо – до первого true
-var x;
-true || (x = 1);
-alert(x); // undefined, x не присвоен
-// А в примере ниже первый аргумент – false, так что ИЛИ попытается вычислить второй, запустив тем самым присваивание:
-
-var x;
-false || (x = 1);
-alert(x); // 1
-
-
-var hour = 9, isWeekend = true;
-if (hour < 10 || hour > 18 || isWeekend) {
-    alert('Upssss.')
-}
-
-// И - &&
-// Итак, оператор && вычисляет операнды слева направо до первого «ложного» и возвращает его, а если все истинные – то последнее значение.
-alert( true && true ); // true
-alert( false && true ); // false
-alert( true && false ); // false
-alert( false && false ); // false
-
-var hour = 12,
-  minute = 30;
-if (hour == 12 && minute == 30) {
-  alert( 'Время 12:30' );
-}
-
-if (1 && 0) { // вычислится как true && false
-    alert( 'не сработает, т.к. условие ложно' );
-  }
-
-// Приоритет у && больше, чем у ||
-// Приоритет оператора И && больше, чем ИЛИ ||, так что он выполняется раньше.
- alert( 5 || 1 && 0 ); // 5
-
-// НЕ - !
-alert(!true)  // false
-
-// Преобразование типов. В JS особо не принято. Есть строка - работай со строкой.
-// Типизация слабая!
-+'1' //  FUCKING FUCK
-// 1
-alert(String(null) == 'null')  // String с большой буквы
-// true
-alert( "123" + undefined );
-// "123undefined"
-alert(Number('123'))  // Number с большой буквы
-// 123
-var a = +"123"; // 123
-// ==
-var a = "123"
-Number(a); //123
-
-var a = 12 
-Boolean(a);  //12
-// ==
-!!a
 
 // Циклы
 var a = 1;
@@ -241,6 +166,7 @@ switch (value) {
     console.log('> 12')
     break;
 }
+
 //  Группировка case
 var a = 2+1;
 switch (a) {
