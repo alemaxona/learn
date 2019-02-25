@@ -338,6 +338,7 @@ function pow(x, n) {
 
 // Объекты в JS
 // Прототипы / this
+// Создается как функция через переменную
 var myClass = function (title) { // title - Тут что-то типа значения  конструктора
   this.title = title;  // Что-то типа self в Python
   var privateValue = 'Secret';
@@ -373,7 +374,7 @@ console.log(o.runPrivateWithCall())
 console.log(myClass.prototype)
 
 
-myClass.prototype.test = function() {
+myClass.prototype.test = function() {  // Создание прототипа
   console.log('TEST')
 }
 o.test()
