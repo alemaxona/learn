@@ -45,10 +45,10 @@ if (age < 3) {
 
 // Условие IF в одну строку
 var x = 1 === 1 ? console.log('true') : 'false'
+// true
 
 var company = prompt('Какая компания создала JavaScript?', '');
-(company == 'Netscape') ?
-   alert('Да, верно') : alert('Неправильно');
+company == 'Netscape' ? alert('Да, верно') : alert('Неправильно');
 
 
 // Циклы
@@ -74,6 +74,7 @@ do {
     i++
 } while (i <3);
 // Синтаксис do..while редко используется, т.к. обычный while нагляднее – в нём не приходится искать глазами условие и ломать голову, почему оно проверяется именно в конце.
+
 
 // Цикл for
 // Тут больше итерирование по условию, а не по коллекции, как в Python(for i in array: ...)!
@@ -128,7 +129,6 @@ for (;;) {
   // будет выполняться вечно
 }
 
-
 // Прерывание цикла: break
 var sum = 0;
 
@@ -143,7 +143,6 @@ while (true) {
 }
 alert( 'Сумма: ' + sum );
 
-
 // Прерываение Continue
 for (var i = 0; i < 10; i++) {
 
@@ -157,6 +156,7 @@ for (var i = 0; i < 10; i++) {
     alert( i );
   }
 }
+
 
 // swith - Это некое подобие IF, сравнение констант 
 //Здесь обязателен break или return!
@@ -190,7 +190,6 @@ switch (a) {
     alert('Странный результат, очень странный');
 }
 
-
 // Выход сразу из нескольких уровне цикла
 // Использование меток для break и continue
 out: for(var i = 0; i < 3; i++) {
@@ -202,7 +201,17 @@ out: for(var i = 0; i < 3; i++) {
   }
 }
 
+
 // Функции
+typeof(nameFunction)
+// "function"  - Тип данных
+// Имена функций должны быть глаголами!
+// getAge(..)          // get, "получает" возраст
+// calcD(..)           // calc, "вычисляет" дискриминант
+// createForm(..)      // create, "создает" форму
+// checkPermission(..) // check, "проверяет" разрешение, возвращает true/false
+
+// Обычное объявление (Function Declaration)
 function test (a, b) {
   return a + b
 }
@@ -212,21 +221,120 @@ test(1, 2)
 // Если ввести больше значений чем нужно, то JS возьмет только те, которые определены.
 // *args, *kwargs тут нет! В другом(современном) JS - есть!
 
-// ==
-// Объвление в переменной
-var myFunc = function test (a, b) {
+// Объвление в переменной (Function Expression)
+var test = function(a, b) {
   return a + b
 }
-console.log(myFunc(1, 2)) 
+console.log(test(1, 2)) 
 // Если передать без параметров, то выведется имходный код функциии!
-console.log(myFunc)
+console.log(test)
 // ƒ test (a, b) {
 //   return a + b
 // } 
 
-typeof(myFunc)
-// "function"  - Тип данных
+// !!!
+// Основное отличие между ними: функции, объявленные как Function Declaration, 
+// создаются интерпретатором до выполнения кода.
+// Поэтому их можно вызвать до объявления, например:
 
+sayHi("Max"); // Hi, Max
+
+function sayHi(name) {
+  alert( "Hi, " + name );
+}
+// А если бы это было объявление Function Expression, то такой вызов бы не сработал:
+// !!!
+
+// Анонимные функции
+// Функциональное выражение, которое не записывается в переменную, называют анонимной функцией.
+function ask(question, yes, no) {
+  if (confirm(question)) yes()
+  else no();
+}
+
+ask("Вы согласны?", function() { alert("Вы согласились."); }, function() { alert("Вы отменили выполнение."); });
+
+
+// Область видимости
+// В Pythone так нельзя!
+var userName = 'Max'; // Глобальная переменная
+function showMessage() {
+  console.log(userName);
+  userName = 'Kate'; // Присвоение во внешнюю переменную
+  console.log(userName);
+}
+
+showMessage();
+console.log(userName); // Kate, значение внешней переменной изменено функцией
+
+// Параметры копируются в локальные переменные функции.
+function showMessage(from, text) {
+  from = '**' + from + '**'; // меняем локальную переменную from
+  console.log(from + ': ' + text);
+}
+var from = "Max";
+showMessage(from, "Hi");
+console.log(from); // старое значение from без изменений, в функции была изменена копия
+
+// Если функция должна принимать 2 параметра, а ей передали один,
+// то вотрой параметр будет = undefined!
+function test(a, b) {
+  if (b == undefined) {
+    console.log(" Needed two arguments");
+  } else {
+    a = a + b;
+    console.log(a);
+  }
+}
+test(1); // Needed two arguments
+test(1, 3) // 4
+
+// Короткие записи
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  } else {
+    return confirm('Родители разрешили?');
+  }
+}
+// ==
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  } 
+  return confirm('Родители разрешили?');
+}
+// ==
+function checkAge(age) {
+  return (age > 18) ? true : confirm('Родители разрешили?');
+}
+// ==
+function checkAge(age) {
+  return (age > 18) || confirm('Родители разрешили?');
+}
+
+// Рекурсия (https://learn.javascript.ru/recursion) + Стек вызовов
+// В теле функции могут быть вызваны другие функции для выполнения подзадач.
+// Частный случай подвызова – когда функция вызывает сама себя. Это называется рекурсией.
+pow(2, 3)
+// В данном случае будет иметь 3 контекста (глубина рекурсии)
+// Контест запоминает текущие переменные и место вызова (https://learn.javascript.ru/recursion)
+function pow(i, n) {
+  if (n != 1) {
+    return i * pow(i, n - 1)
+  } else {
+    return i
+  }
+}
+// ==
+//  Дання функция лучше, так как имеет 1 контекст и расходует меньше памяти.
+function pow(x, n) {
+  var result = x;
+  for (var i = 1; i < n; i++) {
+    result *= x;
+  }
+  return result;
+}
 
 // Объекты в JS
 // Прототипы / this
@@ -270,3 +378,11 @@ myClass.prototype.test = function() {
 }
 o.test()
 // TEST
+
+
+// DOM - Document Object Model (https://learn.javascript.ru/dom-nodes)
+// document - ~ все элементы страницы
+document.getElementsByTagName('a')  // селект
+// Выведет все ссылки
+// ==
+document.getElementsByClassName('Link')

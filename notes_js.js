@@ -36,6 +36,7 @@ console.log(s)
 alert( 1 / 0 ); // Infinity, бесконечность.
 alert( "нечисло" * 2 ); // // Nan - не число!, ошибка
 
+var myVar = "My var"
 s = 'My var'
 console.log(s == myVar)  // Вывод на экран
 // true
@@ -45,6 +46,15 @@ console.log(typeof(s))  //console.log(typeof s)
 // string
 console.error(s)  // Вывод ошибок
 // My var  // Error
+
+// == или ===
+// Сравнение === проверяет точное равенство, включая одинаковый тип. Это самый очевидный и надёжный способ сравнения.
+// Остальные сравнения == < <= > >= осуществляют числовое приведение типа
+1 == '1'
+// true  // Так как JS пытается првести к типу
+
+1 === '1'
+// false
 
 // Объекты (Почти подобие словарей Python)
 var o = {}
@@ -157,7 +167,6 @@ Boolean(0)
 !true
 // false
 
-
 // Еще как вариант
 parseInt('1')
 // 1
@@ -236,7 +245,6 @@ alert( i ); // 2
 alert( 2 * i++ ); // 4
 alert( i ); // 3
 
-
 var i = 1;
 alert( 2 * ++i ); // 4
 alert( i ); // 2
@@ -281,7 +289,6 @@ alert('Вам ' + years + ' лет!')
 
 var test = prompt("Тест");
 var test = prompt("Тест", '');   // Рекомендуется всегда ставить второй аргумент( для совместимости в IE)
-
 
 var isAdmin = confirm("Вы - администратор?");  // OK or Cancel
 alert( isAdmin ); // true or false
