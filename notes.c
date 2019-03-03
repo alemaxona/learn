@@ -171,3 +171,100 @@ float c;
 scanf ("%d %d", &a, &b);
 c = (float)a/b  // На время выполнения делает переменную a - float
 printf("%f", c)
+
+/*
+
+/*
+ Б. Керниган, Д. Ритчи. Язык программирования Си:
+ Прочитать разделы 2.11 - 3.4
+ Написать программу, выводящую в консоль результат вычисления квадратного уравнения в области действительных и комплексных чисел.Параметры a, b и с – действительные числа (тип double) запросить из консоли с помощью функции getchar(). Формат результата: Уравнение x*x + 1 = 0 имеет 1 корень x1 = 1.000000*i
+ (Опционально) В программе выше предварительно проверить введенные значения на корректность.
+ 
+ Б. Керниган, Д. Ритчи. Язык программирования Си:
+ Прочитать главу 4 до раздела 4.3
+ Для программы из ДЗ №5 подготовить объявления использованных ранее функций и вынести все функции вычислений и ввода-вывода в отдельные файлы.
+ 
+
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
+
+#define MAX_SIZE 50
+
+double a, b, c;
+
+
+double convertValue(void) {
+    
+    char array[MAX_SIZE] = {};
+    signed char c;
+    double result;
+    char i = 0;
+    
+    while((c = getchar()) != EOF && c != '\n') {
+        if (isdigit(c) || c == '.' || c == '-') {
+            array[i] = c;
+            i++;
+        } else {
+            array[i] = '\0';
+        }
+    }
+    
+    result = atof(array);
+    return result;
+}
+
+
+void inputUserValue() {
+    
+    printf("Enter a: ");
+    a = convertValue();
+    printf("a = %.1f", a);
+    
+    printf("\n\nEnter b: ");
+    b = convertValue();
+    printf("b = %.1f", b);
+    
+    printf("\n\nEnter c: ");
+    c = convertValue();
+    printf("c = %.1f", c);
+    
+}
+
+
+void calculateEquation() {
+    
+    if (b == 0 && c == 0) {
+        printf("\n\nThe quadratic equation has no roots");
+    } else if (a != 0 && (b == 0 || c == 0)) {
+        printf("\n\nThe quadratic equation is not Full");
+    } else if (a != 0 && b != 0 && c != 0) {
+        printf("\n\nThe quadratic equation is Full");
+    } else {
+        printf("\na = 0");
+    }
+    return;
+}
+
+
+double searchDiscriminant(double a, double b, double c) {
+    
+    return (b*b) - (4 * (a * c));
+}
+
+
+int main(void) {
+    
+    inputUserValue();
+    calculateEquation();
+    printf("D = %.2f", searchDiscriminant(2.4, 1.5, 1));
+    
+//    printf("\n\nsum: %f", a + b + c);
+    
+    getchar();
+    
+    return 0;
+}
+
+
+*/
